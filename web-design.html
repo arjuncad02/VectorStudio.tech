@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website Design & Development — VectorStudio</title>
+  <meta name="description" content="Professional website design and development for businesses. Fast, responsive, conversion-focused sites starting at $109/mo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #services-nav { background:var(--dark-2); border-bottom:1px solid var(--glass-border); padding:1rem 5%; display:flex; gap:1.5rem; flex-wrap:wrap; overflow-x:auto; }
+    #services-nav a { color:var(--text-muted); font-size:.83rem; font-weight:600; white-space:nowrap; padding:.4rem .8rem; border-radius:8px; transition:all .2s; }
+    #services-nav a:hover, #services-nav a.active { background:rgba(37,99,235,.15); color:var(--blue-light); }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+    .two-col.flip { direction:rtl; } .two-col.flip > * { direction:ltr; }
+    .service-img-full { width:100%; border-radius:20px; object-fit:cover; border:1px solid var(--glass-border); }
+    .checklist { list-style:none; display:flex; flex-direction:column; gap:.65rem; margin-top:1.5rem; }
+    .checklist li { display:flex; align-items:flex-start; gap:.7rem; color:var(--text-dim); font-size:.9rem; line-height:1.6; }
+    .tech-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:1rem; margin-top:2rem; }
+    .tech-badge { background:var(--dark-3); border:1px solid var(--glass-border); border-radius:12px; padding:1rem; text-align:center; font-size:.83rem; font-weight:600; color:var(--text-dim); transition:all .3s; }
+    .tech-badge:hover { border-color:rgba(59,130,246,.3); color:var(--blue-light); transform:translateY(-3px); }
+    .tech-badge .ti { font-size:1.5rem; display:block; margin-bottom:.4rem; }
+    .price-note { background:rgba(37,99,235,.08); border:1px solid rgba(59,130,246,.2); border-radius:14px; padding:1.5rem 2rem; margin-top:2rem; }
+    .price-note strong { color:var(--blue-light); }
+    @media(max-width:768px){ .two-col{grid-template-columns:1fr;} .two-col.flip{direction:ltr;} }
+  </style>
+</head>
+<body>
+<div id="cursor"></div><div id="cursor-ring"></div><div id="scroll-progress"></div>
+
+<nav>
+  <a href="index.html" class="logo">Vector<span>Studio</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#process">Process</a></li>
+    <li><a href="index.html#portfolio">Work</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#" class="nav-cta" data-book>Book a Free Call</a>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#process">Process</a></li>
+    <li><a href="index.html#portfolio">Work</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+  </ul>
+  <div class="mob-contact"><a href="mailto:info@vectorstudio.tech">✉ info@vectorstudio.tech</a><a href="tel:+16478664489">📞 +1 647 866 4489</a></div>
+  <a href="#" class="btn mob-cta" data-book>Book a Free Call →</a>
+</div>
+
+<!-- Hero -->
+<div class="page-hero" style="background:var(--dark-2);">
+  <div class="page-hero-bg"></div><div class="page-hero-grid"></div>
+  <div class="page-hero-content">
+    <span class="section-label">Website Design & Development</span>
+    <h1>Websites That<br /><span style="color:var(--blue-light)">Convert & Perform</span></h1>
+    <p>We design and build fast, beautiful, and strategically crafted websites for businesses of every size — from sleek landing pages to full e-commerce platforms and web applications.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-primary" data-book>Get a Free Quote →</a>
+      <a href="index.html#portfolio" class="btn btn-ghost">View Our Work</a>
+    </div>
+  </div>
+</div>
+
+<!-- Service sub-nav -->
+<div id="services-nav">
+  <a href="web-design.html" class="active">🌐 Web Design</a>
+  <a href="branding.html">✏️ Logo & Branding</a>
+  <a href="product-design.html">🎨 Product Design</a>
+  <a href="apps.html">📱 App Development</a>
+</div>
+
+<!-- What's included -->
+<section style="background:var(--dark);">
+  <div class="centered reveal" style="margin-bottom:3rem;">
+    <span class="section-label">What's Included</span>
+    <h2 class="section-title">Everything in One Package</h2>
+    <p class="section-sub">No piecemeal add-ons. Every website we build includes everything you need to go live and grow.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-item reveal delay-1"><div class="feature-icon">🎨</div><h4>Custom Visual Design</h4><p>Bespoke layouts and aesthetics built around your brand — never templates. Every page designed from scratch to reflect your unique identity.</p></div>
+    <div class="feature-item reveal delay-2"><div class="feature-icon">📱</div><h4>Fully Responsive</h4><p>Pixel-perfect on every device — desktop, tablet, and mobile. We test across 20+ screen sizes and browsers before delivery.</p></div>
+    <div class="feature-item reveal delay-3"><div class="feature-icon">⚡</div><h4>Blazing Fast Speed</h4><p>Optimized for Core Web Vitals with 90+ Google PageSpeed scores. Fast sites rank better and convert better — we prioritize performance.</p></div>
+    <div class="feature-item reveal delay-4"><div class="feature-icon">🔍</div><h4>SEO-Ready Foundation</h4><p>Semantic HTML, meta tags, Open Graph, sitemap, schema markup, and clean URL structures — built for search engines from day one.</p></div>
+    <div class="feature-item reveal delay-1"><div class="feature-icon">🛒</div><h4>E-Commerce Ready</h4><p>Shopify, WooCommerce, or custom-built storefronts with product pages, cart, checkout, payment gateways, and inventory management.</p></div>
+    <div class="feature-item reveal delay-2"><div class="feature-icon">⚙️</div><h4>CMS Integration</h4><p>Edit your own content with ease. We integrate WordPress, Webflow, Contentful, Sanity, or any headless CMS that fits your workflow.</p></div>
+    <div class="feature-item reveal delay-3"><div class="feature-icon">🔒</div><h4>Security & Hosting</h4><p>SSL certificates, secure hosting setup guidance, DDoS protection, and regular security audits so your site stays safe 24/7.</p></div>
+    <div class="feature-item reveal delay-4"><div class="feature-icon">📊</div><h4>Analytics & Tracking</h4><p>Google Analytics 4, Search Console, Meta Pixel, and conversion tracking set up and verified so you can measure what matters.</p></div>
+  </div>
+</section>
+
+<!-- Who it's for -->
+<section style="background:var(--dark-2);">
+  <div class="two-col">
+    <div class="reveal-left">
+      <span class="section-label">Who We Build For</span>
+      <h2 class="section-title">From Solo Founders to Enterprise Teams</h2>
+      <p class="section-sub" style="max-width:100%">We've built websites for every type of business. Here's who we work with most often:</p>
+      <ul class="checklist">
+        <li><div class="check">✓</div><span><strong style="color:#fff">Startups & Founders</strong> — MVP websites, pitch-ready landing pages, and product teasers that build waitlists before launch.</span></li>
+        <li><div class="check">✓</div><span><strong style="color:#fff">Small Businesses</strong> — Local service businesses, restaurants, clinics, and retail shops that need a professional web presence.</span></li>
+        <li><div class="check">✓</div><span><strong style="color:#fff">E-Commerce Brands</strong> — Fashion, beauty, supplements, electronics — we build stores designed to drive purchases.</span></li>
+        <li><div class="check">✓</div><span><strong style="color:#fff">Agencies & Studios</strong> — Portfolio sites and client-facing platforms that showcase creative work with impact.</span></li>
+        <li><div class="check">✓</div><span><strong style="color:#fff">SaaS & Tech Companies</strong> — Marketing sites, docs hubs, and web app dashboards for B2B and B2C software products.</span></li>
+        <li><div class="check">✓</div><span><strong style="color:#fff">Enterprise Organizations</strong> — Multi-department sites, intranets, and web platforms with complex requirements and governance.</span></li>
+      </ul>
+    </div>
+    <div class="reveal-right">
+      <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=700&q=80&auto=format&fit=crop" alt="Web design work" class="service-img-full" style="height:440px" />
+    </div>
+  </div>
+</section>
+
+<!-- Tech Stack -->
+<section style="background:var(--dark);">
+  <div class="centered reveal">
+    <span class="section-label">Technology</span>
+    <h2 class="section-title">We Build With the Best Tools</h2>
+    <p class="section-sub">We choose the right technology for your project — not the trendy one. Here's what we work with:</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-badge reveal delay-1"><span class="ti">⚛️</span>React / Next.js</div>
+    <div class="tech-badge reveal delay-2"><span class="ti">🌊</span>Webflow</div>
+    <div class="tech-badge reveal delay-3"><span class="ti">🛍️</span>Shopify</div>
+    <div class="tech-badge reveal delay-4"><span class="ti">📝</span>WordPress</div>
+    <div class="tech-badge reveal delay-1"><span class="ti">🔷</span>TypeScript</div>
+    <div class="tech-badge reveal delay-2"><span class="ti">🎨</span>Tailwind CSS</div>
+    <div class="tech-badge reveal delay-3"><span class="ti">🗄️</span>Supabase</div>
+    <div class="tech-badge reveal delay-4"><span class="ti">☁️</span>Vercel / AWS</div>
+  </div>
+</section>
+
+<!-- Process -->
+<section style="background:var(--dark-2);">
+  <div class="two-col flip">
+    <div class="reveal-right">
+      <span class="section-label">Our Web Design Process</span>
+      <h2 class="section-title">How We Go From Brief to Live Site</h2>
+      <ul class="checklist" style="gap:1.1rem">
+        <li><div class="check" style="background:rgba(37,99,235,.2);min-width:28px;width:28px;height:28px;font-size:.8rem">1</div><div><strong style="color:#fff">Discovery & Research</strong><br />We audit your competitors, define your audience, and map out information architecture.</div></li>
+        <li><div class="check" style="background:rgba(37,99,235,.2);min-width:28px;width:28px;height:28px;font-size:.8rem">2</div><div><strong style="color:#fff">Wireframes & Moodboard</strong><br />Low-fidelity wireframes lock in structure; a moodboard aligns visual direction before pixel-perfect design begins.</div></li>
+        <li><div class="check" style="background:rgba(37,99,235,.2);min-width:28px;width:28px;height:28px;font-size:.8rem">3</div><div><strong style="color:#fff">High-Fidelity Design</strong><br />Full Figma designs for every page, reviewed and approved by you before a single line of code is written.</div></li>
+        <li><div class="check" style="background:rgba(37,99,235,.2);min-width:28px;width:28px;height:28px;font-size:.8rem">4</div><div><strong style="color:#fff">Development & QA</strong><br />We build the site, run cross-browser and device testing, performance audits, and accessibility checks.</div></li>
+        <li><div class="check" style="background:rgba(37,99,235,.2);min-width:28px;width:28px;height:28px;font-size:.8rem">5</div><div><strong style="color:#fff">Launch & Handover</strong><br />We deploy, set up analytics, and hand over training documentation so you can manage your site with confidence.</div></li>
+      </ul>
+    </div>
+    <div class="reveal-left">
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&q=80&auto=format&fit=crop" alt="Design process" class="service-img-full" style="height:440px" />
+    </div>
+  </div>
+</section>
+
+<!-- Pricing note -->
+<section style="background:var(--dark);">
+  <div class="centered reveal" style="max-width:680px;margin:0 auto;">
+    <span class="section-label">Pricing</span>
+    <h2 class="section-title">Web Design Starts at $109/mo</h2>
+    <p class="section-sub" style="margin:0 auto 1.5rem">Our Starter plan includes a complete 5-page website with mobile responsiveness, SEO, and monthly updates included.</p>
+    <div class="price-note" style="text-align:left">
+      <p style="font-size:.9rem;color:var(--text-dim);line-height:1.75"><strong style="color:#fff">Starter ($109/mo)</strong> — 5-page site, logo, SEO basics, 2 revisions, email support.<br/>
+      <strong style="color:#fff">Growth ($299/mo)</strong> — Up to 15 pages, full brand kit, CMS, unlimited revisions, priority support, monthly strategy call.<br/>
+      <strong style="color:#fff">Enterprise (Custom)</strong> — Complex platforms, web apps, multi-region sites, dedicated PM, SLA support.</p>
+    </div>
+    <div class="hero-actions centered-actions" style="margin-top:2rem;">
+      <a href="#" class="btn btn-primary" data-book>Get a Free Quote →</a>
+      <a href="index.html#pricing" class="btn btn-ghost">View Full Pricing</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--dark-2);">
+  <div class="two-col" style="gap:4rem;align-items:start;">
+    <div class="reveal-left">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-sub" style="max-width:100%">Everything you need to know about our website design service.</p>
+    </div>
+    <div class="faq-list reveal-right">
+      <div class="faq-item"><button class="faq-q">How long does it take to build a website? <span class="faq-chevron">▼</span></button><div class="faq-a">A typical 5-page site takes 1–2 weeks. Larger projects (15+ pages, e-commerce) take 3–6 weeks depending on complexity. We'll give you an exact timeline in your proposal.</div></div>
+      <div class="faq-item"><button class="faq-q">Do I own my website after it's built? <span class="faq-chevron">▼</span></button><div class="faq-a">Yes — 100%. You own all code, design files, and content. We transfer full ownership upon project completion and final payment.</div></div>
+      <div class="faq-item"><button class="faq-q">Can you redesign my existing website? <span class="faq-chevron">▼</span></button><div class="faq-a">Absolutely. We handle full redesigns regularly. We'll audit your current site, preserve what's working, and elevate everything else.</div></div>
+      <div class="faq-item"><button class="faq-q">Will I be able to update the content myself? <span class="faq-chevron">▼</span></button><div class="faq-a">Yes. We integrate a CMS (WordPress, Webflow, Sanity, etc.) so you can update text, images, and blog posts without touching code. We provide training documentation.</div></div>
+      <div class="faq-item"><button class="faq-q">What if I need changes after launch? <span class="faq-chevron">▼</span></button><div class="faq-a">All monthly plans include ongoing updates. Growth and Enterprise plans include priority support. You'll never be left stranded after go-live.</div></div>
+      <div class="faq-item"><button class="faq-q">Do you offer hosting? <span class="faq-chevron">▼</span></button><div class="faq-a">We don't host directly, but we set up and configure hosting for you on platforms like Vercel, Netlify, WP Engine, or AWS. We guide you through the entire process.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--dark);text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(37,99,235,.15) 0%,transparent 70%);pointer-events:none;"></div>
+  <h2 class="section-title reveal" style="position:relative;">Let's Build Your<br /><span style="color:var(--blue-light)">Dream Website</span></h2>
+  <p class="section-sub reveal" style="margin:0 auto 2rem;position:relative;">Book a free 30-min call and let's talk about what you need.</p>
+  <div class="hero-actions centered-actions reveal" style="justify-content:center;position:relative;">
+    <a href="#" class="btn btn-primary" data-book>Book a Free Call →</a>
+    <a href="mailto:info@vectorstudio.tech" class="btn btn-ghost">Email Us</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Vector<span>Studio</span></a>
+      <p>Websites, logos, product design, and apps — built for businesses that mean business.</p>
+      <div class="footer-contact"><a href="mailto:info@vectorstudio.tech">✉ info@vectorstudio.tech</a><a href="tel:+16478664489">📞 +1 647 866 4489</a></div>
+      <div class="social-links"><a href="#" class="social-link">𝕏</a><a href="#" class="social-link">in</a><a href="#" class="social-link">◎</a></div>
+    </div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="web-design.html">Web Design & Dev</a></li><li><a href="branding.html">Logo & Branding</a></li><li><a href="product-design.html">Product Design</a></li><li><a href="apps.html">App Development</a></li></ul></div>
+    <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html#why">About Us</a></li><li><a href="index.html#portfolio">Our Work</a></li><li><a href="index.html#pricing">Pricing</a></li></ul></div>
+    <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:info@vectorstudio.tech">Email Us</a></li><li><a href="tel:+16478664489">Call Us</a></li><li><a href="#" data-book>Book a Call</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 VectorStudio. All rights reserved.</p><p>Privacy Policy · Terms of Service</p></div>
+</footer>
+
+<!-- Booking Modal -->
+<div class="modal-backdrop" id="bookingModal">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="modal-close">✕</button>
+    <div id="formBody">
+      <h3>Book Your Free Discovery Call</h3>
+      <p class="modal-sub">Tell us about your project and we'll confirm your slot within 24 hours.</p>
+      <form id="bookingForm">
+        <input type="text" name="_honey" style="display:none" />
+        <div class="form-grid">
+          <div class="form-group"><label>Full Name *</label><input type="text" name="Full Name" placeholder="Jane Smith" required /></div>
+          <div class="form-group"><label>Email *</label><input type="email" name="Email" placeholder="jane@company.com" required /></div>
+          <div class="form-group"><label>Phone</label><input type="tel" name="Phone" placeholder="+1 000 000 0000" /></div>
+          <div class="form-group"><label>Business Name *</label><input type="text" name="Business Name" placeholder="Acme Corp" required /></div>
+          <div class="form-group full"><label>Service Needed</label><select name="Service Needed"><option>Website Design & Development</option><option>Logo & Brand Identity</option><option>Product Design</option><option>App Development</option><option>Full Package</option></select></div>
+          <div class="form-group full"><label>Project Details</label><textarea name="Project Details" placeholder="Describe your project…"></textarea></div>
+          <div class="form-group"><label>Preferred Date *</label><input type="date" name="Preferred Date" required /></div>
+          <div class="form-group"><label>Preferred Time *</label><select name="Preferred Time" required><option value="" disabled selected>Choose…</option><option>Morning 9AM–12PM</option><option>Afternoon 12PM–5PM</option><option>Evening 5PM–7PM</option></select></div>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">Book My Appointment →</button>
+      </form>
+    </div>
+    <div class="form-success" id="formSuccess"><div class="success-icon">✓</div><h4>You're booked in!</h4><p>We'll confirm at <strong>info@vectorstudio.tech</strong> within 24 hours.</p></div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
