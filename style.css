@@ -229,6 +229,69 @@ section { padding: 100px 5%; }
   font-size: 0.6rem; color: var(--blue-light); font-weight: 700;
 }
 
+/* ── TEXT-BASED ICON BOXES (replaces emoji icons) ── */
+.feature-icon {
+  font-size: 0.58rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: var(--blue-light) !important;
+  line-height: 1 !important;
+  text-align: center !important;
+}
+.platform-icon {
+  font-size: 0.75rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+  color: var(--blue-light) !important;
+  margin-bottom: 0.75rem !important;
+  line-height: 1.2 !important;
+}
+.why-icon {
+  font-size: 0.6rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: var(--blue-light) !important;
+  line-height: 1 !important;
+}
+.service-icon-badge {
+  font-size: 0.52rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: var(--blue-light) !important;
+  line-height: 1 !important;
+}
+.deliverable .di {
+  font-size: 0.58rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
+  color: var(--blue-light) !important;
+  display: block !important;
+  margin-bottom: 0.5rem !important;
+  line-height: 1 !important;
+}
+.ic {
+  font-size: 0.62rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.04em !important;
+  color: var(--blue-light) !important;
+  line-height: 1 !important;
+}
+.service-arrow {
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+}
+.portfolio-arrow {
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+}
+
 /* ── REVEAL ANIMATIONS ── */
 .reveal {
   opacity: 0; transform: translateY(30px);
