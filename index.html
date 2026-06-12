@@ -9,6 +9,16 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script>
+    /* ── THEME: apply before first paint to avoid flash ── */
+    (function () {
+      try {
+        var t = localStorage.getItem('vs-theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        if (t === 'light') document.documentElement.setAttribute('data-theme', 'light');
+      } catch (e) {}
+    })();
+  </script>
   <style>
     /* ── HOME-SPECIFIC STYLES ── */
     /* Hero */
@@ -40,6 +50,7 @@
     .shape {
       position: absolute; pointer-events: none;
       animation: floatShape 9s ease-in-out infinite;
+      will-change: transform;
     }
     .shape-1 { width:80px;height:80px;top:18%;left:8%; background:linear-gradient(135deg,rgba(37,99,235,.4),transparent); border:1px solid rgba(59,130,246,.25); border-radius:30% 70% 70% 30%/30% 30% 70% 70%; animation-delay:0s; }
     .shape-2 { width:48px;height:48px;top:28%;right:11%; background:linear-gradient(135deg,rgba(96,165,250,.35),transparent); border:1px solid rgba(96,165,250,.2); border-radius:50%; animation-delay:-2s;animation-duration:11s; }
@@ -81,7 +92,8 @@
       margin-top:4.5rem; animation:heroIn 1s cubic-bezier(0.16,1,.3,1) .9s both;
       background:var(--glass); border:1px solid var(--glass-border); border-radius:16px; overflow:hidden;
     }
-    .stat { text-align:center; padding:1.25rem 2.5rem; flex:1; min-width:120px; }
+    .stat { text-align:center; padding:1.25rem 2.5rem; flex:1; min-width:120px; transition:background .3s ease, transform .3s ease; }
+    .stat:hover { background:rgba(37,99,235,.07); transform:translateY(-2px); }
     .stat + .stat { border-left:1px solid var(--glass-border); }
     .stat-num { font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:800; color:#fff; }
     .stat-label { font-size:0.75rem; color:var(--text-muted); margin-top:.2rem; }
@@ -236,6 +248,137 @@
       .stat+.stat{border-left:none;border-top:1px solid var(--glass-border);}
       h1{letter-spacing:-1px;}
     }
+
+    /* ════════════════════════════════════════════════
+       LIGHT / DARK THEME SYSTEM
+       Dark = default (your existing style.css values).
+       Light mode overrides the same CSS variables, so
+       style.css does not need to be touched.
+       ════════════════════════════════════════════════ */
+    [data-theme="light"] {
+      --dark: #f6f8fc;
+      --dark-2: #edf1f9;
+      --dark-3: #ffffff;
+      --dark-4: #e4eaf6;
+      --glass: rgba(20, 45, 110, 0.04);
+      --glass-border: rgba(20, 50, 120, 0.13);
+      --text: #0d1526;
+      --text-dim: #41506c;
+      --text-muted: #64748b;
+      --blue: #2563eb;
+      --blue-light: #1d4ed8;
+    }
+    /* page + chrome */
+    [data-theme="light"] body { background: var(--dark); color: var(--text); }
+    [data-theme="light"] nav,
+    [data-theme="light"] .mobile-menu {
+      background: rgba(246, 248, 252, 0.88) !important;
+      border-color: var(--glass-border) !important;
+    }
+    [data-theme="light"] .modal { background: #ffffff !important; border-color: var(--glass-border) !important; color: var(--text); }
+    [data-theme="light"] .modal-backdrop { background: rgba(20, 30, 55, 0.45) !important; }
+    /* re-map hardcoded whites/dark-only colors */
+    [data-theme="light"] h1,
+    [data-theme="light"] .stat-num,
+    [data-theme="light"] .service-card h3,
+    [data-theme="light"] .process-step h4,
+    [data-theme="light"] .why-item h4,
+    [data-theme="light"] .portfolio-info h4,
+    [data-theme="light"] .reviewer-info h5,
+    [data-theme="light"] .pricing-price,
+    [data-theme="light"] .section-title { color: var(--text); }
+    [data-theme="light"] .btn-plan.outline:hover { color: var(--text); }
+    [data-theme="light"] .grid-overlay {
+      background-image:
+        linear-gradient(rgba(20, 50, 130, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(20, 50, 130, 0.05) 1px, transparent 1px);
+    }
+    [data-theme="light"] .hero-bg {
+      background:
+        radial-gradient(ellipse 90% 70% at 50% -5%, rgba(37,99,235,0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 85% 75%, rgba(37,99,235,0.07) 0%, transparent 50%),
+        radial-gradient(ellipse 30% 30% at 10% 80%, rgba(29,78,216,0.05) 0%, transparent 50%);
+    }
+    [data-theme="light"] .metric-card { background: rgba(20, 50, 130, 0.04); border-color: rgba(20, 50, 130, 0.1); }
+    [data-theme="light"] .bar { background: rgba(20, 50, 130, 0.1); }
+    [data-theme="light"] .service-img,
+    [data-theme="light"] .portfolio-thumb img { filter: brightness(1) saturate(1); }
+    [data-theme="light"] .portfolio-overlay { background: linear-gradient(to top, rgba(13, 21, 38, 0.55) 0%, transparent 60%); }
+    [data-theme="light"] .service-card:hover { box-shadow: 0 20px 50px rgba(30, 60, 130, 0.14); }
+    [data-theme="light"] .portfolio-item:hover { box-shadow: 0 28px 64px rgba(30, 60, 130, 0.16), 0 0 0 1px rgba(59,130,246,.2); }
+    [data-theme="light"] .testimonial-card:hover { box-shadow: 0 18px 48px rgba(30, 60, 130, 0.12); }
+    [data-theme="light"] .pricing-card:hover { box-shadow: 0 24px 56px rgba(30, 60, 130, 0.14); }
+    [data-theme="light"] .pricing-card.featured { box-shadow: 0 0 50px rgba(37,99,235,.12); }
+    [data-theme="light"] #cursor-ring { border-color: rgba(37, 99, 235, 0.45) !important; }
+
+    /* smooth cross-fade when switching themes */
+    body, nav, section, footer, .mobile-menu,
+    .service-card, .portfolio-item, .testimonial-card, .pricing-card,
+    .why-item, .metrics-panel, .metric-card, .contact-strip, .stat,
+    .modal, input, select, textarea {
+      transition: background-color .45s ease, border-color .45s ease, color .45s ease, box-shadow .45s ease;
+    }
+
+    /* theme toggle button */
+    .theme-toggle {
+      width: 40px; height: 40px; border-radius: 12px;
+      border: 1px solid var(--glass-border); background: var(--glass);
+      color: var(--text); cursor: pointer; font-size: 1.05rem;
+      display: inline-flex; align-items: center; justify-content: center;
+      transition: border-color .25s, transform .35s cubic-bezier(0.34,1.56,0.64,1), background .25s;
+      position: relative; overflow: hidden;
+    }
+    .theme-toggle:hover { border-color: rgba(59,130,246,.5); transform: rotate(20deg) scale(1.08); }
+    .theme-toggle .icon { display: inline-block; transition: transform .5s cubic-bezier(0.34,1.56,0.64,1), opacity .3s; }
+    .theme-toggle.switching .icon { transform: rotate(180deg) scale(0); opacity: 0; }
+    .mobile-menu .theme-toggle { margin: 0 auto 1rem; }
+
+    /* ════════════════════════════════════════════════
+       EXTRA MOTION LAYER
+       ════════════════════════════════════════════════ */
+    html { scroll-behavior: smooth; }
+
+    /* circular theme-change wipe */
+    .theme-wipe {
+      position: fixed; border-radius: 50%; pointer-events: none; z-index: 9999;
+      background: var(--dark); transform: scale(0); opacity: .9;
+    }
+    .theme-wipe.go { animation: themeWipe .6s ease-out forwards; }
+    @keyframes themeWipe { to { transform: scale(1); opacity: 0; } }
+
+    /* button ripple */
+    .btn, .btn-plan, .nav-cta { position: relative; overflow: hidden; }
+    .ripple {
+      position: absolute; border-radius: 50%; pointer-events: none;
+      background: rgba(255,255,255,.35); transform: scale(0);
+      animation: rippleAnim .6s ease-out forwards;
+    }
+    [data-theme="light"] .btn-ghost .ripple,
+    [data-theme="light"] .btn-plan.outline .ripple { background: rgba(37,99,235,.2); }
+    @keyframes rippleAnim { to { transform: scale(3); opacity: 0; } }
+
+    /* magnetic CTA (transform applied by JS) */
+    .magnetic { transition: transform .25s cubic-bezier(0.23,1,.32,1); will-change: transform; }
+
+    /* gentle parallax handled by JS on .shape and .hero-content */
+
+    /* section label slide-in underline */
+    .section-title { position: relative; }
+    .underline-grow::after {
+      content: ''; display: block; width: 56px; height: 3px; border-radius: 2px;
+      background: linear-gradient(90deg, var(--blue), #60a5fa);
+      margin: 1rem auto 0; transform: scaleX(0); transform-origin: center;
+      transition: transform .8s cubic-bezier(0.16,1,.3,1) .2s;
+    }
+    .underline-grow.in-view::after { transform: scaleX(1); }
+
+    /* respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .shape, .grid-overlay, .cta-ring, .badge-dot, h1 .accent { animation: none !important; }
+      .magnetic { transition: none; }
+      .theme-wipe { display: none; }
+    }
   </style>
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta property="og:type" content="website" />
@@ -382,6 +525,7 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Switch between dark and light theme" title="Toggle theme"><span class="icon">☾</span></button>
     <a href="#" class="nav-cta" data-book>Book a Free Call</a>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -391,6 +535,7 @@
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
+  <button class="theme-toggle" id="themeToggleMobile" aria-label="Switch between dark and light theme"><span class="icon">☾</span></button>
   <ul>
     <li><a href="#services">Services</a></li>
     <li><a href="#process">Process</a></li>
@@ -420,8 +565,8 @@
     <h1>We Build Digital<br /><span class="accent">Experiences That</span><br />Drive Growth</h1>
     <p class="hero-sub">From startups to enterprises — VectorStudio crafts stunning websites, logos, product designs, and apps that make your brand impossible to ignore.</p>
     <div class="hero-actions">
-      <a href="#" class="btn btn-primary" data-book>Book a Free Call</a>
-      <a href="#portfolio" class="btn btn-ghost">View Our Work</a>
+      <a href="#" class="btn btn-primary magnetic" data-book>Book a Free Call</a>
+      <a href="#portfolio" class="btn btn-ghost magnetic">View Our Work</a>
     </div>
     <div class="hero-stats">
       <div class="stat">
@@ -468,7 +613,7 @@
 <section id="services">
   <div class="centered reveal" style="margin-bottom:3rem;">
     <span class="section-label">What We Do</span>
-    <h2 class="section-title">Everything Your Business Needs</h2>
+    <h2 class="section-title underline-grow">Everything Your Business Needs</h2>
     <p class="section-sub">One studio, all your digital needs — websites, branding, product design, and apps built to grow your business.</p>
   </div>
   <div class="services-grid">
@@ -527,7 +672,7 @@
 <section id="process">
   <div class="centered reveal" style="margin-bottom:0;">
     <span class="section-label">Our Process</span>
-    <h2 class="section-title">Simple. Transparent. Effective.</h2>
+    <h2 class="section-title underline-grow">Simple. Transparent. Effective.</h2>
     <p class="section-sub">We make working with us easy — so you can focus on running your business.</p>
   </div>
   <div class="process-track">
@@ -574,7 +719,7 @@
 <section id="portfolio">
   <div class="centered reveal" style="margin-bottom:0;">
     <span class="section-label">Our Work</span>
-    <h2 class="section-title">Projects We're Proud Of</h2>
+    <h2 class="section-title underline-grow">Projects We're Proud Of</h2>
     <p class="section-sub">A glimpse into the brands and digital products we've built for clients worldwide.</p>
   </div>
   <div class="portfolio-grid">
@@ -591,7 +736,7 @@
 <section id="testimonials">
   <div class="centered reveal" style="margin-bottom:0;">
     <span class="section-label">Client Reviews</span>
-    <h2 class="section-title">What Our Clients Say</h2>
+    <h2 class="section-title underline-grow">What Our Clients Say</h2>
     <p class="section-sub">Don't take our word for it — hear from businesses we've helped grow.</p>
   </div>
   <div class="testimonials-grid">
@@ -620,7 +765,7 @@
 <section id="pricing">
   <div class="centered reveal" style="margin-bottom:0;">
     <span class="section-label">Pricing</span>
-    <h2 class="section-title">Simple Monthly Plans</h2>
+    <h2 class="section-title underline-grow">Simple Monthly Plans</h2>
     <p class="section-sub">Flexible subscriptions for businesses of every size. Cancel anytime.</p>
   </div>
   <div class="pricing-grid">
@@ -683,8 +828,8 @@
   <h2 class="section-title reveal">Ready to Build Something<br /><span style="color:var(--blue-light)">Extraordinary?</span></h2>
   <p class="section-sub reveal">Book a free 30-minute discovery call. No commitment, just great ideas and a clear plan.</p>
   <div class="hero-actions centered-actions reveal">
-    <a href="#" class="btn btn-primary" data-book>Book a Free Call</a>
-    <a href="mailto:info@vectorstudio.tech" class="btn btn-ghost">Email Us Directly</a>
+    <a href="#" class="btn btn-primary magnetic" data-book>Book a Free Call</a>
+    <a href="mailto:info@vectorstudio.tech" class="btn btn-ghost magnetic">Email Us Directly</a>
   </div>
 </section>
 
@@ -825,5 +970,117 @@
 </div>
 
 <script src="script.js"></script>
+<script>
+/* ════════════════════════════════════════════════
+   THEME TOGGLE + EXTRA MOTION LAYER
+   (additive — does not interfere with script.js)
+   ════════════════════════════════════════════════ */
+(function () {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Theme toggle ── */
+  function currentTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  }
+  function setIcons(theme) {
+    document.querySelectorAll('.theme-toggle .icon').forEach(function (el) {
+      el.textContent = theme === 'light' ? '☀' : '☾';
+    });
+  }
+  function applyTheme(theme) {
+    if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    else document.documentElement.removeAttribute('data-theme');
+    setIcons(theme);
+    try { localStorage.setItem('vs-theme', theme); } catch (e) {}
+  }
+  function toggleTheme(ev) {
+    var next = currentTheme() === 'light' ? 'dark' : 'light';
+
+    /* circular wipe from the click point */
+    if (!reduceMotion && ev) {
+      var wipe = document.createElement('div');
+      wipe.className = 'theme-wipe';
+      var d = Math.max(window.innerWidth, window.innerHeight) * 2.2;
+      wipe.style.width = wipe.style.height = d + 'px';
+      wipe.style.left = (ev.clientX - d / 2) + 'px';
+      wipe.style.top = (ev.clientY - d / 2) + 'px';
+      document.body.appendChild(wipe);
+      requestAnimationFrame(function () { wipe.classList.add('go'); });
+      setTimeout(function () { wipe.remove(); }, 700);
+    }
+
+    /* icon spin */
+    document.querySelectorAll('.theme-toggle').forEach(function (btn) {
+      btn.classList.add('switching');
+      setTimeout(function () { btn.classList.remove('switching'); }, 350);
+    });
+    setTimeout(function () { applyTheme(next); }, reduceMotion ? 0 : 150);
+  }
+  ['themeToggle', 'themeToggleMobile'].forEach(function (id) {
+    var btn = document.getElementById(id);
+    if (btn) btn.addEventListener('click', toggleTheme);
+  });
+  setIcons(currentTheme());
+
+  if (reduceMotion) return; /* skip decorative motion below */
+
+  /* ── Mouse parallax on hero shapes + hero content ── */
+  var hero = document.getElementById('hero');
+  if (hero && window.matchMedia('(pointer: fine)').matches) {
+    var shapes = hero.querySelectorAll('.shape');
+    var content = hero.querySelector('.hero-content');
+    var raf = null, mx = 0, my = 0;
+    hero.addEventListener('mousemove', function (e) {
+      mx = (e.clientX / window.innerWidth - 0.5);
+      my = (e.clientY / window.innerHeight - 0.5);
+      if (!raf) raf = requestAnimationFrame(update);
+    });
+    function update() {
+      raf = null;
+      shapes.forEach(function (s, i) {
+        var depth = (i + 1) * 7;
+        s.style.translate = (mx * depth) + 'px ' + (my * depth) + 'px';
+      });
+      if (content) content.style.translate = (mx * -8) + 'px ' + (my * -5) + 'px';
+    }
+  }
+
+  /* ── Magnetic buttons ── */
+  document.querySelectorAll('.magnetic').forEach(function (btn) {
+    btn.addEventListener('mousemove', function (e) {
+      var r = btn.getBoundingClientRect();
+      var x = e.clientX - r.left - r.width / 2;
+      var y = e.clientY - r.top - r.height / 2;
+      btn.style.transform = 'translate(' + x * 0.22 + 'px,' + y * 0.28 + 'px)';
+    });
+    btn.addEventListener('mouseleave', function () {
+      btn.style.transform = '';
+    });
+  });
+
+  /* ── Click ripple on all buttons ── */
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.btn, .btn-plan, .nav-cta');
+    if (!btn) return;
+    var r = btn.getBoundingClientRect();
+    var ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    var size = Math.max(r.width, r.height);
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (e.clientX - r.left - size / 2) + 'px';
+    ripple.style.top = (e.clientY - r.top - size / 2) + 'px';
+    btn.appendChild(ripple);
+    setTimeout(function () { ripple.remove(); }, 650);
+  });
+
+  /* ── Section-title underline grow on scroll ── */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (en.isIntersecting) { en.target.classList.add('in-view'); io.unobserve(en.target); }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.underline-grow').forEach(function (el) { io.observe(el); });
+})();
+</script>
 </body>
 </html>
