@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Subscribe — VectorStudio</title>
+<meta name="description" content="Start your VectorStudio subscription. Secure checkout with card, Apple Pay, or Google Pay." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --blue:#2563eb; --blue-light:#3b82f6; --blue-glow:rgba(59,130,246,.4);
+  --dark:#060a12; --dark-2:#0a1120; --dark-3:#0f1929; --dark-4:#182234;
+  --glass:rgba(255,255,255,.04); --glass-border:rgba(255,255,255,.07);
+  --text:#e2e8f0; --text-muted:#64748b; --text-dim:#94a3b8; --radius:16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;background:var(--dark);color:var(--text);min-height:100vh}
+a{color:inherit}
+
+/* top bar */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:1.2rem clamp(1.2rem,5vw,4rem);border-bottom:1px solid var(--glass-border)}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1.15rem;text-decoration:none}
+.logo span{color:var(--blue-light)}
+.back{font-size:.85rem;color:var(--text-dim);text-decoration:none;transition:color .3s}
+.back:hover{color:#fff}
+
+/* layout */
+.wrap{max-width:1060px;margin:0 auto;padding:clamp(2rem,5vw,4rem) 1.2rem 5rem;display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:start}
+@media(max-width:840px){.wrap{grid-template-columns:1fr}}
+
+.panel{background:var(--dark-3);border:1px solid var(--glass-border);border-radius:24px;padding:2.2rem}
+h1{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:800;margin-bottom:.4rem}
+.sub{color:var(--text-dim);font-size:.88rem;margin-bottom:1.8rem;line-height:1.6}
+
+/* plan picker */
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.8rem}
+.plan{border:1px solid var(--glass-border);border-radius:14px;padding:1rem 1.1rem;cursor:pointer;background:var(--dark-2);transition:all .3s;position:relative}
+.plan input{position:absolute;opacity:0}
+.plan.active{border-color:rgba(59,130,246,.6);background:linear-gradient(160deg,rgba(37,99,235,.12),var(--dark-2) 60%);box-shadow:0 0 30px rgba(37,99,235,.12)}
+.plan-tier{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--text-muted)}
+.plan-price{font-family:'Space Grotesk',sans-serif;font-size:1.45rem;font-weight:800;color:#fff}
+.plan-price sub{font-size:.75rem;font-weight:500;color:var(--text-muted)}
+
+/* form */
+label{display:block;font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-dim);margin-bottom:.4rem}
+.field{margin-bottom:1.1rem}
+input[type=text],input[type=email],input[type=tel]{
+  width:100%;padding:.85rem 1rem;border-radius:12px;border:1px solid var(--glass-border);
+  background:var(--dark-2);color:var(--text);font-family:'Inter',sans-serif;font-size:.92rem;transition:border-color .3s;
+}
+input:focus{outline:none;border-color:rgba(59,130,246,.55)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:520px){.row{grid-template-columns:1fr}}
+
+.btn-pay{width:100%;padding:1rem;border:none;border-radius:12px;cursor:pointer;
+  font-family:'Inter',sans-serif;font-size:.95rem;font-weight:700;color:#fff;
+  background:linear-gradient(135deg,#2563eb,#1d4ed8);box-shadow:0 4px 20px rgba(37,99,235,.4);transition:all .3s;margin-top:.4rem}
+.btn-pay:hover{box-shadow:0 8px 34px rgba(37,99,235,.6);transform:translateY(-2px)}
+.btn-pay:disabled{opacity:.6;cursor:wait;transform:none}
+
+.secure{display:flex;align-items:center;gap:.5rem;justify-content:center;margin-top:1rem;font-size:.76rem;color:var(--text-muted)}
+.paymethods{display:flex;gap:.5rem;justify-content:center;margin-top:.8rem;flex-wrap:wrap}
+.paymethods span{font-size:.7rem;font-weight:600;color:var(--text-dim);border:1px solid var(--glass-border);border-radius:8px;padding:.3rem .7rem;background:var(--dark-2)}
+
+/* summary */
+.summary{position:sticky;top:1.5rem}
+.sum-row{display:flex;justify-content:space-between;font-size:.9rem;color:var(--text-dim);padding:.55rem 0}
+.sum-row.total{border-top:1px solid var(--glass-border);margin-top:.5rem;padding-top:1rem;color:#fff;font-weight:700;font-size:1.05rem}
+.sum-row.total .amt{font-family:'Space Grotesk',sans-serif;font-size:1.3rem}
+.note{font-size:.76rem;color:var(--text-muted);line-height:1.6;margin-top:1.2rem}
+.note a{color:var(--blue-light);text-decoration:none}
+.err{display:none;background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.35);color:#fca5a5;border-radius:12px;padding:.8rem 1rem;font-size:.84rem;margin-bottom:1rem}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="logo" href="index.html">Vector<span>Studio</span></a>
+  <a class="back" href="index.html#pricing">&larr; Back to pricing</a>
+</div>
+
+<div class="wrap">
+
+  <!-- LEFT: form -->
+  <div class="panel">
+    <h1>Start your subscription</h1>
+    <p class="sub">Choose your plan and tell us a little about you. You'll complete payment on our secure Stripe checkout — we never see or store your card details.</p>
+
+    <div class="err" id="errBox">Please fill in all fields before continuing.</div>
+
+    <form id="subForm">
+      <div class="plans" id="planPicker">
+        <label class="plan active" data-plan="starter">
+          <input type="radio" name="plan" value="starter" checked />
+          <div class="plan-tier">Starter</div>
+          <div class="plan-price">$299<sub>/mo</sub></div>
+        </label>
+        <label class="plan" data-plan="growth">
+          <input type="radio" name="plan" value="growth" />
+          <div class="plan-tier">Growth</div>
+          <div class="plan-price">$799<sub>/mo</sub></div>
+        </label>
+      </div>
+
+      <div class="field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" autocomplete="name" required />
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" autocomplete="email" required />
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="company">Company name</label>
+          <input type="text" id="company" name="company" autocomplete="organization" required />
+        </div>
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" required />
+        </div>
+      </div>
+
+      <button type="submit" class="btn-pay" id="payBtn">Continue to Secure Payment</button>
+      <div class="secure">🔒 256-bit encrypted checkout powered by Stripe</div>
+      <div class="paymethods">
+        <span>Visa</span><span>Mastercard</span><span>Amex</span><span>Apple Pay</span><span>Google Pay</span>
+      </div>
+    </form>
+  </div>
+
+  <!-- RIGHT: order summary -->
+  <div class="panel summary">
+    <h1 style="font-size:1.2rem;">Order summary</h1>
+    <div class="sum-row"><span id="sumPlanName">Starter plan (monthly)</span><span id="sumSubtotal">$299.00</span></div>
+    <div class="sum-row"><span>Tax</span><span style="font-size:.8rem;">Calculated at checkout</span></div>
+    <div class="sum-row total"><span>Monthly subtotal</span><span class="amt" id="sumTotal">$299.00</span></div>
+    <p style="font-size:.74rem;color:var(--text-muted);margin-top:.6rem;line-height:1.55;">Applicable tax is added automatically at checkout based on your location. International cards are accepted — your bank converts the amount to your local currency.</p>
+    <p class="note">
+      Your subscription renews automatically on the same day each month. You'll receive an email receipt for every payment and a confirmation when your subscription starts.
+      Need to cancel? <a href="cancel.html">Request cancellation here</a> — our team will process it for you.
+    </p>
+  </div>
+</div>
+
+<script>
+/* ════════════════ CONFIG — EDIT THESE ════════════════ */
+const CONFIG = {
+  // 1. Get a free key at https://web3forms.com using info@vectorstudio.tech
+  WEB3FORMS_KEY: "c9593d9c-79ef-4fe8-b29d-f6269bd4f9b8",
+
+  // 2. Create two Payment Links in Stripe (Products → Payment Links) and paste them here.
+  //    In each link's settings, turn ON: collect phone number, and add a custom
+  //    field "Company name". Stripe will also collect name + email automatically.
+  STRIPE_LINKS: {
+    starter: "https://buy.stripe.com/28EdRag8IcVn9dQ4M75J601",
+    growth:  "https://buy.stripe.com/7sY7sMbSs4oR61EdiD5J602"
+  },
+
+  PLANS: {
+    starter: { name: "Starter plan (monthly)", price: 299 },
+    growth:  { name: "Growth plan (monthly)",  price: 799 }
+  }
+};
+/* ═════════════════════════════════════════════════════ */
+
+const fmt = n => "$" + n.toFixed(2);
+let current = "starter";
+
+function renderSummary() {
+  const p = CONFIG.PLANS[current];
+  document.getElementById("sumPlanName").textContent = p.name;
+  document.getElementById("sumSubtotal").textContent = fmt(p.price);
+  document.getElementById("sumTotal").textContent = fmt(p.price);
+}
+
+/* plan picker */
+document.querySelectorAll(".plan").forEach(card => {
+  card.addEventListener("click", () => {
+    document.querySelectorAll(".plan").forEach(c => c.classList.remove("active"));
+    card.classList.add("active");
+    card.querySelector("input").checked = true;
+    current = card.dataset.plan;
+    renderSummary();
+  });
+});
+
+/* preselect from ?plan= in the URL */
+const urlPlan = new URLSearchParams(location.search).get("plan");
+if (urlPlan && CONFIG.PLANS[urlPlan]) {
+  current = urlPlan;
+  document.querySelector(`.plan[data-plan="${urlPlan}"]`).click();
+}
+renderSummary();
+
+/* submit: email Arjun the details via Web3Forms, then redirect to Stripe */
+document.getElementById("subForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target, btn = document.getElementById("payBtn"), err = document.getElementById("errBox");
+  err.style.display = "none";
+
+  const name = f.name.value.trim(), email = f.email.value.trim(),
+        company = f.company.value.trim(), phone = f.phone.value.trim();
+  if (!name || !email || !company || !phone) { err.style.display = "block"; return; }
+
+  btn.disabled = true;
+  btn.textContent = "Redirecting to payment…";
+
+  const p = CONFIG.PLANS[current];
+  try {
+    await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        access_key: CONFIG.WEB3FORMS_KEY,
+        subject: `🟢 New subscription started — ${p.name} — ${name}`,
+        from_name: "VectorStudio Checkout",
+        Plan: p.name,
+        "Monthly amount (before tax)": fmt(p.price),
+        Name: name,
+        Email: email,
+        "Company name": company,
+        "Phone number": phone,
+        "Started at": new Date().toLocaleString("en-CA", { timeZone: "America/Toronto" })
+      })
+    });
+  } catch (_) { /* don't block payment if the notification email fails */ }
+
+  // Send the customer to Stripe with their email pre-filled
+  const link = CONFIG.STRIPE_LINKS[current];
+  location.href = link + (link.includes("?") ? "&" : "?") + "prefilled_email=" + encodeURIComponent(email);
+});
+</script>
+</body>
+</html>
