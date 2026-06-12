@@ -1,806 +1,829 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VectorStudio — Web Design, Branding & Apps | Greater Toronto Area</title>
-<meta name="description" content="VectorStudio is a GTA-based design studio building fast, conversion-focused websites, brand identities, and apps. Real work, transparent pricing, 24-hour response.">
-<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
-<meta property="og:title" content="VectorStudio — Web Design, Branding & Apps">
-<meta property="og:description" content="GTA-based design studio building websites, brands, and apps that drive growth. Transparent pricing. Free website audit.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://vectorstudio.tech">
-<meta property="og:site_name" content="VectorStudio">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://vectorstudio.tech/">
-<script>
-/* apply theme before first paint to avoid flash */
-(function(){try{var t=localStorage.getItem('vs-theme');if(!t)t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<script type="application/ld+json">
-{
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VectorStudio — Websites, Logos, Design & Apps | vectorstudio.tech</title>
+  <meta name="description" content="VectorStudio helps businesses of all sizes build stunning websites, logos, product designs, and mobile apps. Starting at $109/mo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── HOME-SPECIFIC STYLES ── */
+    /* Hero */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center;
+      justify-content: center; text-align: center;
+      padding: 140px 5% 90px; position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 90% 70% at 50% -5%, rgba(37,99,235,0.28) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 85% 75%, rgba(37,99,235,0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 30% 30% at 10% 80%, rgba(29,78,216,0.08) 0%, transparent 50%);
+    }
+    .grid-overlay {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 90% 80% at 50% 50%, black 30%, transparent 100%);
+      animation: gridShift 25s linear infinite;
+    }
+    @keyframes gridShift {
+      from { background-position: 0 0; } to { background-position: 64px 64px; }
+    }
+    /* Shapes */
+    .shape {
+      position: absolute; pointer-events: none;
+      animation: floatShape 9s ease-in-out infinite;
+    }
+    .shape-1 { width:80px;height:80px;top:18%;left:8%; background:linear-gradient(135deg,rgba(37,99,235,.4),transparent); border:1px solid rgba(59,130,246,.25); border-radius:30% 70% 70% 30%/30% 30% 70% 70%; animation-delay:0s; }
+    .shape-2 { width:48px;height:48px;top:28%;right:11%; background:linear-gradient(135deg,rgba(96,165,250,.35),transparent); border:1px solid rgba(96,165,250,.2); border-radius:50%; animation-delay:-2s;animation-duration:11s; }
+    .shape-3 { width:110px;height:110px;bottom:25%;left:5%; background:rgba(37,99,235,.05); border:1px solid rgba(59,130,246,.1); border-radius:60% 40% 30% 70%/60% 30% 70% 40%; animation-delay:-4s;animation-duration:13s; }
+    .shape-4 { width:55px;height:55px;bottom:18%;right:8%; background:linear-gradient(135deg,rgba(37,99,235,.3),transparent); border:1px solid rgba(59,130,246,.18); border-radius:14px; transform:rotate(45deg); animation-delay:-1s;animation-duration:10s; }
+    .shape-5 { width:28px;height:28px;top:55%;left:18%; background:rgba(96,165,250,.5); border-radius:50%; box-shadow:0 0 18px rgba(96,165,250,.4); animation-delay:-3s;animation-duration:7s; }
+    @keyframes floatShape {
+      0%,100%{transform:translateY(0) rotate(0deg);}
+      33%{transform:translateY(-16px) rotate(4deg);}
+      66%{transform:translateY(8px) rotate(-3deg);}
+    }
+    .hero-content { position:relative; max-width:860px; }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      background:rgba(37,99,235,.12); border:1px solid rgba(59,130,246,.3);
+      color:var(--blue-light); padding:0.4rem 1rem; border-radius:100px;
+      font-size:0.77rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+      margin-bottom:1.75rem;
+      animation:badgePop .8s cubic-bezier(0.34,1.56,0.64,1) .2s both;
+    }
+    @keyframes badgePop { from{opacity:0;transform:scale(0.7) translateY(10px);} to{opacity:1;transform:none;} }
+    .badge-dot { width:7px;height:7px;border-radius:50%;background:var(--blue-light);box-shadow:0 0 10px var(--blue-light);animation:pulse 2s ease-in-out infinite; }
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+    h1 {
+      font-size:clamp(2.6rem,6.5vw,5rem); font-weight:800; letter-spacing:-2px; margin-bottom:1.5rem;
+      animation:heroIn 1s cubic-bezier(0.16,1,.3,1) .4s both;
+    }
+    @keyframes heroIn{from{opacity:0;transform:translateY(36px) rotateX(8deg);}to{opacity:1;transform:none;}}
+    h1 .accent {
+      background:linear-gradient(135deg,#93c5fd,#3b82f6,#1d4ed8);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      background-size:200%;animation:gradShift 5s ease infinite;
+    }
+    @keyframes gradShift{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+    .hero-sub { font-size:clamp(1rem,2vw,1.15rem); color:var(--text-dim); max-width:560px; margin:0 auto 2.5rem; line-height:1.75; animation:heroIn 1s cubic-bezier(0.16,1,.3,1) .6s both; }
+    .hero-actions { justify-content:center; animation:heroIn 1s cubic-bezier(0.16,1,.3,1) .75s both; }
+    .hero-stats {
+      display:flex; gap:0; justify-content:center; flex-wrap:wrap;
+      margin-top:4.5rem; animation:heroIn 1s cubic-bezier(0.16,1,.3,1) .9s both;
+      background:var(--glass); border:1px solid var(--glass-border); border-radius:16px; overflow:hidden;
+    }
+    .stat { text-align:center; padding:1.25rem 2.5rem; flex:1; min-width:120px; }
+    .stat + .stat { border-left:1px solid var(--glass-border); }
+    .stat-num { font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:800; color:#fff; }
+    .stat-label { font-size:0.75rem; color:var(--text-muted); margin-top:.2rem; }
+
+    /* Services */
+    #services { background:var(--dark-2); }
+    .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
+    .service-card {
+      background:var(--dark-3); border:1px solid var(--glass-border);
+      border-radius:20px; overflow:hidden;
+      transition:all .4s cubic-bezier(0.23,1,.32,1);
+      text-decoration:none; display:block; color:inherit;
+    }
+    .service-card:hover { border-color:rgba(59,130,246,.35); transform:translateY(-6px); box-shadow:0 20px 50px rgba(0,0,0,.4); }
+    .service-img { width:100%; height:180px; object-fit:cover; filter:brightness(.75) saturate(.85); transition:filter .4s,transform .5s; }
+    .service-card:hover .service-img { filter:brightness(.9) saturate(1.1); transform:scale(1.04); }
+    .service-body { padding:1.75rem; }
+    .service-icon-row { display:flex; align-items:center; gap:.75rem; margin-bottom:.75rem; }
+    .service-icon-badge { width:42px;height:42px;border-radius:12px;background:rgba(37,99,235,.15);border:1px solid rgba(59,130,246,.25);display:flex;align-items:center;justify-content:center;font-size:1.2rem;transition:transform .3s cubic-bezier(0.34,1.56,0.64,1); }
+    .service-card:hover .service-icon-badge { transform:scale(1.15) rotate(8deg); }
+    .service-arrow { margin-left:auto;color:var(--blue-light);font-size:1.2rem;transition:transform .3s; }
+    .service-card:hover .service-arrow { transform:translateX(4px); }
+    .service-card h3 { font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:.5rem; }
+    .service-card p { color:var(--text-dim);font-size:.86rem;line-height:1.7; }
+    .service-tags { display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem; }
+
+    /* Process */
+    #process { background:var(--dark); }
+    .process-track { display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3.5rem;position:relative; }
+    .process-track::before { content:'';position:absolute;top:21px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--blue-light),transparent);pointer-events:none; }
+    .process-step { text-align:center;padding:1rem .5rem; }
+    .step-num {
+      width:44px;height:44px;border-radius:50%;margin:0 auto 1.25rem;
+      background:linear-gradient(135deg,#2563eb,#1d4ed8);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:700;color:#fff;
+      box-shadow:0 0 0 6px rgba(37,99,235,.12),0 4px 20px rgba(37,99,235,.4);
+      transition:transform .4s cubic-bezier(0.34,1.56,0.64,1),box-shadow .3s;
+    }
+    .process-step:hover .step-num { transform:scale(1.2);box-shadow:0 0 0 10px rgba(37,99,235,.15),0 6px 28px rgba(37,99,235,.5); }
+    .process-step h4 { font-size:.95rem;font-weight:700;color:#fff;margin-bottom:.5rem; }
+    .process-step p { color:var(--text-dim);font-size:.83rem;line-height:1.65; }
+
+    /* Why */
+    #why { background:var(--dark-2); }
+    .why-grid { display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center; }
+    .why-list { display:flex;flex-direction:column;gap:1rem;margin-top:2rem; }
+    .why-item { display:flex;gap:1rem;padding:1.35rem;background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;transition:all .35s cubic-bezier(0.23,1,.32,1); }
+    .why-item:hover { border-color:rgba(59,130,246,.3);background:rgba(37,99,235,.06);transform:translateX(6px); }
+    .why-icon { width:42px;height:42px;min-width:42px;background:rgba(37,99,235,.15);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:transform .3s cubic-bezier(0.34,1.56,0.64,1); }
+    .why-item:hover .why-icon { transform:scale(1.2) rotate(8deg); }
+    .why-item h4 { font-weight:600;color:#fff;margin-bottom:.2rem;font-size:.93rem; }
+    .why-item p { color:var(--text-dim);font-size:.83rem;line-height:1.65; }
+    /* Metrics panel */
+    .metrics-panel { background:linear-gradient(135deg,var(--dark-3),var(--dark-4));border:1px solid var(--glass-border);border-radius:24px;padding:2.25rem;position:relative;overflow:hidden; transition:transform .5s cubic-bezier(0.23,1,.32,1); }
+    .metrics-panel:hover { transform:translateY(-4px); }
+    .metrics-panel::before { content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 30% 30%,rgba(37,99,235,.12) 0%,transparent 60%);pointer-events:none; }
+    .metric-cards { display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem; }
+    .metric-card { background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.4rem;text-align:center;transition:all .35s; }
+    .metric-card:hover { background:rgba(37,99,235,.1);border-color:rgba(59,130,246,.3);transform:translateY(-3px); }
+    .metric-card .num { font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:800;color:var(--blue-light); }
+    .metric-card .lbl { font-size:.75rem;color:var(--text-muted);margin-top:.25rem; }
+    .bar-section { display:flex;flex-direction:column;gap:.85rem;position:relative;z-index:1; }
+    .bar-row {}
+    .bar-label-row { display:flex;justify-content:space-between;font-size:.77rem;color:var(--text-muted);margin-bottom:.3rem; }
+    .bar { height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden; }
+    .bar-fill { height:100%;border-radius:3px;background:linear-gradient(90deg,var(--blue),#60a5fa);transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(0.16,1,.3,1); }
+    .bar-fill.animated { transform:scaleX(1); }
+
+    /* Portfolio */
+    #portfolio { background:var(--dark); }
+    .portfolio-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem; }
+    .portfolio-item { border-radius:20px;overflow:hidden;background:var(--dark-3);border:1px solid var(--glass-border);transition:all .4s cubic-bezier(0.23,1,.32,1); }
+    .portfolio-item:hover { transform:translateY(-8px) rotateX(2deg);box-shadow:0 28px 64px rgba(0,0,0,.45),0 0 0 1px rgba(59,130,246,.2); border-color:rgba(59,130,246,.2); }
+    .portfolio-thumb { height:210px;overflow:hidden;position:relative; }
+    .portfolio-thumb img { width:100%;height:100%;object-fit:cover;filter:brightness(.75) saturate(.85);transition:transform .6s cubic-bezier(0.23,1,.32,1),filter .3s; }
+    .portfolio-item:hover .portfolio-thumb img { transform:scale(1.08);filter:brightness(.9) saturate(1.05); }
+    .portfolio-overlay { position:absolute;inset:0;background:linear-gradient(to top,rgba(6,10,18,.85) 0%,transparent 60%); }
+    .portfolio-badge { position:absolute;top:.9rem;left:.9rem;background:rgba(37,99,235,.85);backdrop-filter:blur(8px);color:#fff;padding:.28rem .7rem;border-radius:6px;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase; }
+    .portfolio-info { padding:1.4rem; }
+    .portfolio-info h4 { font-size:1rem;font-weight:700;color:#fff;margin-bottom:.3rem; }
+    .portfolio-info p { font-size:.82rem;color:var(--text-dim);line-height:1.6; }
+    .portfolio-link { display:inline-flex;align-items:center;gap:.35rem;color:var(--blue-light);font-size:.78rem;font-weight:600;margin-top:.65rem;transition:gap .2s; }
+    .portfolio-item:hover .portfolio-link { gap:.6rem; }
+
+    /* Testimonials */
+    #testimonials { background:var(--dark-2); }
+    .testimonials-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:1.5rem;margin-top:3rem; }
+    .testimonial-card { background:var(--dark-3);border:1px solid var(--glass-border);border-radius:20px;padding:2rem;transition:all .4s cubic-bezier(0.23,1,.32,1); }
+    .testimonial-card:hover { border-color:rgba(59,130,246,.25);transform:translateY(-5px);box-shadow:0 18px 48px rgba(0,0,0,.35); }
+    .stars { display:flex;gap:2px;margin-bottom:.9rem; }
+    .star { width:13px;height:13px;background:#f59e0b;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); }
+    .quote { font-size:2.8rem;line-height:1;color:var(--blue-light);opacity:.3;font-family:Georgia,serif; }
+    .testimonial-card p { color:var(--text-dim);font-size:.89rem;line-height:1.75;margin-bottom:1.4rem; }
+    .reviewer { display:flex;align-items:center;gap:.75rem; }
+    .avatar { width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#1d4ed8);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(37,99,235,.35); }
+    .reviewer-info h5 { font-size:.88rem;font-weight:600;color:#fff; }
+    .reviewer-info span { font-size:.76rem;color:var(--text-muted); }
+
+    /* Pricing */
+    #pricing { background:var(--dark); }
+    .pricing-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem;align-items:start; }
+    .pricing-card { background:var(--dark-3);border:1px solid var(--glass-border);border-radius:24px;padding:2.5rem;position:relative;transition:all .4s cubic-bezier(0.23,1,.32,1); }
+    .pricing-card:hover { transform:translateY(-8px);box-shadow:0 24px 56px rgba(0,0,0,.4); }
+    .pricing-card.featured { border-color:rgba(59,130,246,.5);background:linear-gradient(160deg,rgba(37,99,235,.1) 0%,var(--dark-3) 55%);box-shadow:0 0 50px rgba(37,99,235,.15),inset 0 1px 0 rgba(255,255,255,.05); }
+    .pricing-badge { position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#2563eb,#3b82f6);color:#fff;padding:.3rem 1.1rem;border-radius:100px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;box-shadow:0 4px 16px rgba(37,99,235,.5); }
+    .pricing-tier { font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--text-muted);margin-bottom:.6rem; }
+    .pricing-price { font-family:'Space Grotesk',sans-serif;font-size:3rem;font-weight:800;color:#fff;margin-bottom:.2rem; }
+    .pricing-price sup { font-size:1.3rem;vertical-align:super; }
+    .pricing-price sub { font-size:1rem;font-weight:500;color:var(--text-muted); }
+    .pricing-desc { color:var(--text-dim);font-size:.84rem;margin-bottom:1.75rem;line-height:1.6; }
+    .pricing-features { list-style:none;margin-bottom:2rem;display:flex;flex-direction:column;gap:.65rem; }
+    .pricing-features li { display:flex;align-items:center;gap:.6rem;font-size:.875rem;color:var(--text-dim); }
+    .btn-plan { width:100%;text-align:center;display:block;padding:.9rem;border-radius:12px;font-size:.9rem;font-weight:700;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:all .3s; }
+    .btn-plan.primary { background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;box-shadow:0 4px 20px rgba(37,99,235,.4); }
+    .btn-plan.primary:hover { box-shadow:0 8px 34px rgba(37,99,235,.6);transform:translateY(-2px); }
+    .btn-plan.outline { background:transparent;color:var(--text);border:1px solid var(--glass-border); }
+    .btn-plan.outline:hover { border-color:rgba(59,130,246,.4);color:#fff;transform:translateY(-2px); }
+
+    /* CTA */
+    #cta { background:var(--dark-2);text-align:center;padding:120px 5%;position:relative;overflow:hidden; }
+    #cta::before { content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 50%,rgba(37,99,235,.18) 0%,transparent 70%);pointer-events:none; }
+    .cta-ring { position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(59,130,246,.08);animation:ctaRing 5s linear infinite;pointer-events:none; }
+    .cta-ring:nth-child(1){width:280px;height:280px;animation-delay:0s;}
+    .cta-ring:nth-child(2){width:480px;height:480px;animation-delay:-1.66s;}
+    .cta-ring:nth-child(3){width:680px;height:680px;animation-delay:-3.33s;}
+    @keyframes ctaRing { from{transform:translate(-50%,-50%) scale(.8);opacity:.6;} to{transform:translate(-50%,-50%) scale(1.25);opacity:0;} }
+    #cta .section-title { position:relative;font-size:clamp(2rem,4.5vw,3.2rem); }
+    #cta .section-sub { margin:0 auto 2.5rem;position:relative;max-width:440px; }
+    #cta .hero-actions { position:relative; }
+
+    /* Contact strip */
+    .contact-strip {
+      background:var(--dark-3);border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);
+      padding:1.5rem 5%;display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap;
+    }
+    .contact-item { display:flex;align-items:center;gap:.75rem;color:var(--text-dim);font-size:.9rem; }
+    .contact-item .ic { width:38px;height:38px;background:rgba(37,99,235,.12);border:1px solid rgba(59,130,246,.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem; }
+    .contact-item a { color:var(--text);transition:color .2s; }
+    .contact-item a:hover { color:var(--blue-light); }
+
+    /* Responsive */
+    @media(max-width:900px) {
+      .portfolio-grid{grid-template-columns:1fr 1fr;}
+      .process-track{grid-template-columns:1fr 1fr;gap:2rem;}
+      .process-track::before{display:none;}
+      .why-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:640px) {
+      .portfolio-grid{grid-template-columns:1fr;}
+      .hero-stats{flex-direction:column;}
+      .stat+.stat{border-left:none;border-top:1px solid var(--glass-border);}
+      h1{letter-spacing:-1px;}
+    }
+  </style>
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="VectorStudio" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@vectorstudio" />
+  <meta property="og:title" content="VectorStudio — Website Design, Logos, Apps" />
+  <meta property="og:description" content="Full-service digital design studio. Websites, logos, product design, and apps for businesses of all sizes. Starting at $109/mo." />
+  <meta property="og:url" content="https://vectorstudio.tech" />
+  <script type="application/ld+json">
+  {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "VectorStudio",
-  "url": "https://vectorstudio.tech",
-  "email": "info@vectorstudio.tech",
-  "telephone": "+1-647-866-4489",
-  "areaServed": ["Toronto", "Mississauga", "Scarborough", "Greater Toronto Area", "Canada"],
-  "founder": { "@type": "Person", "name": "Arjun Sagar Dhunna" },
-  "description": "Web design, branding, UI/UX and app development studio based in the Greater Toronto Area.",
-  "priceRange": "$299 - $799+/mo"
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://vectorstudio.tech/#organization",
+      "name": "VectorStudio",
+      "url": "https://vectorstudio.tech",
+      "email": "info@vectorstudio.tech",
+      "telephone": "+1-647-866-4489",
+      "description": "VectorStudio is a full-service digital design studio helping businesses build websites, logos, product designs, and mobile apps starting at $109 per month.",
+      "priceRange": "$$",
+      "areaServed": "Worldwide",
+      "serviceType": [
+        "Website Design",
+        "Logo Design",
+        "Brand Identity",
+        "UI/UX Design",
+        "Mobile App Development"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Digital Design Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Website Design and Development",
+              "url": "https://vectorstudio.tech/web-design.html"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Logo and Brand Identity Design",
+              "url": "https://vectorstudio.tech/branding.html"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Product and UI/UX Design",
+              "url": "https://vectorstudio.tech/product-design.html"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Mobile App Development",
+              "url": "https://vectorstudio.tech/apps.html"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://vectorstudio.tech/#website",
+      "name": "VectorStudio",
+      "url": "https://vectorstudio.tech",
+      "description": "Website design, logo design, product design, and app development for businesses worldwide.",
+      "publisher": {
+        "@id": "https://vectorstudio.tech/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What services does VectorStudio offer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "VectorStudio offers website design and development, logo and brand identity design, product and UI/UX design, and mobile app development for iOS and Android."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does VectorStudio charge?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "VectorStudio offers monthly plans starting at $109/mo for the Starter plan and $299/mo for the Growth plan. Enterprise pricing is custom and available on request."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to build a website with VectorStudio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most projects are delivered in 1 to 4 weeks. A 5-page website typically takes 1 to 2 weeks. Larger custom websites or apps may take 3 to 6 weeks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does VectorStudio work with small businesses?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. VectorStudio works with businesses of all sizes, from solo founders and small local businesses to growing enterprises and funded startups."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I get started with VectorStudio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can book a free 30-minute discovery call through the website at vectorstudio.tech. Alternatively, email info@vectorstudio.tech or call +1 647 866 4489."
+          }
+        }
+      ]
+    }
+  ]
 }
-</script>
-<style>
-:root{
-  --bg:#070a12;
-  --bg-2:#0c1120;
-  --panel:#101728;
-  --line:rgba(120,160,255,.12);
-  --text:#e8edf8;
-  --muted:#9aa7c0;
-  --blue:#3b82f6;
-  --volt:#5eead4;
-  --glow:rgba(59,130,246,.35);
-  --shadow:rgba(0,0,0,.5);
-  --nav-bg:rgba(7,10,18,.78);
-  --tag-bg:rgba(7,10,18,.75);
-  --volt-on-card:#5eead4;
-  --radius:16px;
-  --display:'Space Grotesk',sans-serif;
-  --body:'Inter',sans-serif;
-}
-[data-theme="light"]{
-  --bg:#f7f9fd;
-  --bg-2:#eef2fa;
-  --panel:#ffffff;
-  --line:rgba(30,64,175,.14);
-  --text:#101728;
-  --muted:#52617e;
-  --blue:#2563eb;
-  --volt:#0d9488;
-  --glow:rgba(37,99,235,.25);
-  --shadow:rgba(30,50,100,.16);
-  --nav-bg:rgba(247,249,253,.82);
-  --tag-bg:rgba(255,255,255,.85);
-  --volt-on-card:#0d9488;
-}
-body,header,.card,.case,.plan,.step,.form,details,.field input,.field select,.field textarea,footer{transition:background-color .35s ease,border-color .35s ease,color .35s ease}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-h1,h2,h3,h4{font-family:var(--display);line-height:1.15;font-weight:600;letter-spacing:-.01em}
-img{max-width:100%;display:block}
-a{color:inherit;text-decoration:none}
-.container{max-width:1140px;margin:0 auto;padding:0 24px}
-section{padding:96px 0;position:relative}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
-.eyebrow::before{content:"";width:24px;height:2px;background:var(--blue)}
-h2.sec-title{font-size:clamp(28px,4vw,42px);margin-bottom:16px}
-.sec-lede{color:var(--muted);max-width:560px;margin-bottom:48px}
-
-/* ---------- buttons ---------- */
-.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:12px;font-family:var(--display);font-weight:600;font-size:16px;cursor:pointer;border:none;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
-.btn-primary{background:var(--blue);color:#fff;box-shadow:0 8px 30px var(--glow)}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px var(--glow)}
-.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
-.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
-.theme-btn{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:transparent;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:17px;transition:border-color .2s,transform .2s}
-.theme-btn:hover{border-color:var(--blue);transform:rotate(15deg)}
-
-/* ---------- nav ---------- */
-header{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(14px);background:var(--nav-bg);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
-.logo{font-family:var(--display);font-weight:700;font-size:21px;display:flex;align-items:center;gap:9px}
-.logo .bolt{width:26px;height:26px;flex:none}
-.nav-links{display:flex;gap:32px;font-size:15px;color:var(--muted)}
-.nav-links a:hover{color:var(--text)}
-.nav .btn{padding:10px 20px;font-size:15px}
-.menu-btn{display:none;background:none;border:none;color:var(--text);font-size:26px;cursor:pointer}
-.mobile-menu{display:none;flex-direction:column;gap:4px;padding:12px 24px 24px;border-top:1px solid var(--line);background:var(--bg)}
-.mobile-menu a{padding:12px 0;color:var(--muted);border-bottom:1px solid var(--line)}
-.mobile-menu a:last-child{border:none}
-
-/* ---------- hero ---------- */
-.hero{padding:170px 0 100px;background:radial-gradient(900px 500px at 70% -10%,rgba(59,130,246,.16),transparent 65%),radial-gradient(600px 400px at 10% 20%,rgba(94,234,212,.06),transparent 60%)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
-.hero h1{font-size:clamp(36px,5.2vw,58px);margin-bottom:22px}
-.hero h1 .accent{color:var(--blue)}
-.hero p.lede{font-size:18px;color:var(--muted);max-width:520px;margin-bottom:34px}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
-.hero-facts{display:flex;gap:36px;flex-wrap:wrap}
-.fact b{display:block;font-family:var(--display);font-size:20px;color:var(--text)}
-.fact span{font-size:13px;color:var(--muted)}
-
-/* before/after slider — signature element */
-.ba-wrap{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px var(--shadow);aspect-ratio:4/3;user-select:none;touch-action:none}
-.ba-pane{position:absolute;inset:0}
-.ba-pane svg{width:100%;height:100%;display:block}
-.ba-after{clip-path:inset(0 0 0 var(--cut,50%))}
-.ba-handle{position:absolute;top:0;bottom:0;left:var(--cut,50%);width:2px;background:var(--blue);transform:translateX(-1px);box-shadow:0 0 18px var(--glow)}
-.ba-handle::after{content:"◂ ▸";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--blue);color:#fff;font-size:11px;letter-spacing:2px;padding:8px 10px;border-radius:99px;white-space:nowrap;font-family:var(--display)}
-.ba-tag{position:absolute;bottom:12px;font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:8px;background:var(--tag-bg);border:1px solid var(--line)}
-.ba-tag.before{left:12px;color:var(--muted)}
-.ba-tag.after{right:12px;color:var(--volt)}
-.ba-caption{text-align:center;font-size:13px;color:var(--muted);margin-top:12px}
-
-/* ---------- services ---------- */
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:32px;transition:transform .25s ease,border-color .25s ease}
-.card:hover{transform:translateY(-4px);border-color:rgba(59,130,246,.45)}
-.card .tag{font-family:var(--display);font-size:12px;letter-spacing:.12em;color:var(--blue);text-transform:uppercase}
-.card h3{font-size:21px;margin:12px 0 10px}
-.card p{color:var(--muted);font-size:15px;margin-bottom:18px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{font-size:12.5px;padding:5px 12px;border-radius:99px;border:1px solid var(--line);color:var(--muted)}
-
-/* ---------- case studies ---------- */
-.case{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:44px;margin-bottom:24px}
-.case .shot{border-radius:12px;overflow:hidden;border:1px solid var(--line)}
-.case .shot svg{width:100%;display:block}
-.case .status{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:99px;margin-bottom:14px}
-.status.live{background:rgba(94,234,212,.12);color:var(--volt-on-card);border:1px solid rgba(94,234,212,.3)}
-.status.progress{background:rgba(59,130,246,.12);color:var(--blue);border:1px solid rgba(59,130,246,.3)}
-.status.concept{background:rgba(154,167,192,.1);color:var(--muted);border:1px solid var(--line)}
-.case h3{font-size:25px;margin-bottom:12px}
-.case p{color:var(--muted);font-size:15px;margin-bottom:16px}
-.case ul{list-style:none;margin-bottom:20px}
-.case li{font-size:14.5px;color:var(--muted);padding:6px 0 6px 26px;position:relative}
-.case li::before{content:"→";position:absolute;left:0;color:var(--blue)}
-.case .link{color:var(--blue);font-weight:600;font-size:15px}
-.case .link:hover{text-decoration:underline}
-
-/* ---------- founder ---------- */
-.founder{display:grid;grid-template-columns:340px 1fr;gap:56px;align-items:center}
-.founder-photo{aspect-ratio:1;border-radius:var(--radius);background:linear-gradient(160deg,var(--bg-2),var(--panel));border:1px solid var(--line);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.founder-photo .initials{font-family:var(--display);font-size:84px;font-weight:700;color:var(--blue);opacity:.9}
-.founder-photo .hint{position:absolute;bottom:14px;font-size:12px;color:var(--muted)}
-.founder h2{font-size:clamp(26px,3.4vw,36px);margin-bottom:18px}
-.founder p{color:var(--muted);margin-bottom:16px;max-width:60ch}
-.founder .sig{font-family:var(--display);color:var(--text);font-weight:600;margin-top:8px}
-.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-
-/* ---------- process ---------- */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.step{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
-.step .num{font-family:var(--display);font-size:14px;color:var(--blue);font-weight:700;letter-spacing:.1em}
-.step h4{font-size:17px;margin:12px 0 8px}
-.step p{font-size:14px;color:var(--muted)}
-
-/* ---------- audit banner ---------- */
-.audit{background:linear-gradient(135deg,rgba(59,130,246,.14),rgba(94,234,212,.07));border:1px solid rgba(59,130,246,.3);border-radius:var(--radius);padding:48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
-.audit h3{font-size:clamp(22px,3vw,30px);margin-bottom:10px}
-.audit p{color:var(--muted);max-width:54ch}
-
-/* ---------- pricing ---------- */
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
-.plan{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:36px;position:relative}
-.plan.popular{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue),0 24px 60px rgba(59,130,246,.18)}
-.plan .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-family:var(--display);font-size:12px;font-weight:600;padding:5px 16px;border-radius:99px;letter-spacing:.06em}
-.plan h3{font-size:19px;color:var(--muted);font-weight:500}
-.plan .price{font-family:var(--display);font-size:42px;font-weight:700;margin:10px 0 6px}
-.plan .price small{font-size:16px;color:var(--muted);font-weight:500}
-.plan .desc{font-size:14px;color:var(--muted);margin-bottom:24px;min-height:44px}
-.plan ul{list-style:none;margin-bottom:28px}
-.plan li{font-size:14.5px;padding:7px 0 7px 28px;position:relative;color:var(--muted)}
-.plan li::before{content:"✓";position:absolute;left:0;color:var(--volt-on-card);font-weight:700}
-.plan .btn{width:100%;justify-content:center}
-.cancel-note{text-align:center;color:var(--muted);font-size:14px;margin-top:28px}
-.cancel-note a{color:var(--blue)}
-
-/* ---------- FAQ ---------- */
-.faq{max-width:760px;margin:0 auto}
-details{border:1px solid var(--line);border-radius:12px;background:var(--panel);margin-bottom:12px;overflow:hidden}
-summary{cursor:pointer;padding:20px 24px;font-family:var(--display);font-weight:600;font-size:16.5px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"+";font-size:22px;color:var(--blue);transition:transform .2s}
-details[open] summary::after{transform:rotate(45deg)}
-details .a{padding:0 24px 22px;color:var(--muted);font-size:15px}
-
-/* ---------- contact / booking ---------- */
-.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:start}
-.contact-side h2{font-size:clamp(28px,4vw,40px);margin-bottom:18px}
-.contact-side p{color:var(--muted);margin-bottom:28px}
-.contact-rows{display:flex;flex-direction:column;gap:14px}
-.crow{display:flex;align-items:center;gap:14px;font-size:15px;color:var(--muted)}
-.crow .ic{width:42px;height:42px;border-radius:10px;background:var(--panel);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:12px;color:var(--blue);flex:none}
-.crow a{color:var(--text)}
-.crow a:hover{color:var(--blue)}
-.form{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:36px}
-.form h3{font-size:21px;margin-bottom:6px}
-.form .sub{font-size:14px;color:var(--muted);margin-bottom:24px}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.field.full{grid-column:1/-1}
-.field label{font-size:13px;font-weight:600;color:var(--muted)}
-.field input,.field select,.field textarea{background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--text);font-family:var(--body);font-size:15px;outline:none;transition:border-color .2s}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue)}
-.field textarea{resize:vertical;min-height:90px}
-.form .btn{width:100%;justify-content:center;margin-top:6px}
-.form-ok{display:none;text-align:center;padding:40px 10px}
-.form-ok .check{font-size:42px;color:var(--volt);margin-bottom:12px}
-.calendly-note{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
-.calendly-note a{color:var(--blue)}
-
-/* ---------- footer ---------- */
-footer{border-top:1px solid var(--line);padding:64px 0 36px;background:var(--bg-2)}
-.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
-.foot-grid h5{font-family:var(--display);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--text);margin-bottom:16px}
-.foot-grid a,.foot-grid p{display:block;color:var(--muted);font-size:14.5px;margin-bottom:10px}
-.foot-grid a:hover{color:var(--blue)}
-.foot-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-top:28px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
-.foot-bottom a{color:var(--muted)}
-.foot-bottom a:hover{color:var(--blue)}
-
-/* ---------- reveal animation ---------- */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-.reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){
-  .reveal{opacity:1;transform:none;transition:none}
-  html{scroll-behavior:auto}
-}
-
-/* ---------- responsive ---------- */
-@media (max-width:960px){
-  .hero-grid,.founder,.contact-grid{grid-template-columns:1fr}
-  .case{grid-template-columns:1fr;padding:32px}
-  .steps{grid-template-columns:repeat(2,1fr)}
-  .plans{grid-template-columns:1fr}
-  .foot-grid{grid-template-columns:1fr 1fr}
-  .founder-photo{max-width:300px}
-}
-@media (max-width:720px){
-  .nav-links,.nav .btn-primary{display:none}
-  .theme-btn{width:38px;height:38px}
-  .menu-btn{display:block}
-  .cards,.steps,.fgrid{grid-template-columns:1fr}
-  section{padding:72px 0}
-  .hero{padding:130px 0 72px}
-  .audit{padding:32px}
-}
-</style>
+  </script>
 </head>
 <body>
 
-<!-- ============ NAV ============ -->
-<header>
-  <div class="container nav">
-    <a class="logo" href="#top" aria-label="VectorStudio home">
-      <svg class="bolt" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z" fill="#3b82f6"/>
-      </svg>
-      VectorStudio
-    </a>
-    <nav class="nav-links" aria-label="Main">
-      <a href="#services">Services</a>
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-    <div style="display:flex;align-items:center;gap:12px">
-      <button class="theme-btn" id="themeBtn" aria-label="Switch between dark and light theme" onclick="toggleTheme()">☾</button>
-      <a class="btn btn-primary" href="#contact">Book a Free Call</a>
-      <button class="menu-btn" aria-label="Open menu" onclick="toggleMenu()">☰</button>
-    </div>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="scroll-progress"></div>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a href="index.html" class="logo">Vector<span>Studio</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#" class="nav-cta" data-book>Book a Free Call</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
-    <a href="#services" onclick="toggleMenu()">Services</a>
-    <a href="#work" onclick="toggleMenu()">Work</a>
-    <a href="#about" onclick="toggleMenu()">About</a>
-    <a href="#pricing" onclick="toggleMenu()">Pricing</a>
-    <a href="#faq" onclick="toggleMenu()">FAQ</a>
-    <a href="#contact" onclick="toggleMenu()" style="color:var(--blue);font-weight:600">Book a Free Call →</a>
-  </nav>
-</header>
+</nav>
 
-<!-- ============ HERO ============ -->
-<section class="hero" id="top">
-  <div class="container hero-grid">
-    <div>
-      <h1>Websites and brands that <span class="accent">earn their keep.</span></h1>
-      <p class="lede">VectorStudio is a design studio in the Greater Toronto Area. We design and build fast, conversion-focused websites, brand identities, and apps — with one point of contact from kickoff to launch.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="#contact">Book a Free Call</a>
-        <a class="btn btn-ghost" href="#work">See Real Work</a>
-      </div>
-      <div class="hero-facts">
-        <div class="fact"><b>1–4 weeks</b><span>typical delivery</span></div>
-        <div class="fact"><b>&lt; 24 hrs</b><span>response time</span></div>
-        <div class="fact"><b>Fixed quotes</b><span>no surprise invoices</span></div>
-        <div class="fact"><b>GTA based</b><span>working worldwide</span></div>
-      </div>
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="mob-contact">
+    <a href="mailto:info@vectorstudio.tech">Email: info@vectorstudio.tech</a>
+    <a href="tel:+16478664489">Phone: +1 647 866 4489</a>
+  </div>
+  <a href="#" class="btn mob-cta" data-book>Book a Free Call</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="shape shape-1"></div>
+  <div class="shape shape-2"></div>
+  <div class="shape shape-3"></div>
+  <div class="shape shape-4"></div>
+  <div class="shape shape-5"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><div class="badge-dot"></div> Design. Build. Launch.</div>
+    <h1>We Build Digital<br /><span class="accent">Experiences That</span><br />Drive Growth</h1>
+    <p class="hero-sub">From startups to enterprises — VectorStudio crafts stunning websites, logos, product designs, and apps that make your brand impossible to ignore.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-primary" data-book>Book a Free Call</a>
+      <a href="#portfolio" class="btn btn-ghost">View Our Work</a>
     </div>
-
-    <!-- Signature element: drag-to-compare before/after -->
-    <div>
-      <div class="ba-wrap" id="baSlider" aria-label="Before and after website redesign comparison. Drag to compare.">
-        <!-- BEFORE pane (replace this SVG with a real screenshot: images/redesign-before.png) -->
-        <div class="ba-pane ba-before" aria-hidden="true">
-          <svg viewBox="0 0 480 360" preserveAspectRatio="xMidYMid slice">
-            <rect width="480" height="360" fill="#d8d8d2"/>
-            <rect x="0" y="0" width="480" height="46" fill="#8a8a82"/>
-            <rect x="16" y="16" width="90" height="14" rx="2" fill="#c9c9c1"/>
-            <rect x="330" y="16" width="40" height="12" rx="2" fill="#b3b3aa"/><rect x="378" y="16" width="40" height="12" rx="2" fill="#b3b3aa"/><rect x="426" y="16" width="38" height="12" rx="2" fill="#b3b3aa"/>
-            <rect x="16" y="70" width="280" height="22" rx="2" fill="#7a7a72"/>
-            <rect x="16" y="100" width="220" height="12" rx="2" fill="#a3a39a"/>
-            <rect x="16" y="118" width="240" height="12" rx="2" fill="#a3a39a"/>
-            <rect x="16" y="150" width="110" height="30" rx="2" fill="#6f6f66"/>
-            <rect x="16" y="208" width="140" height="120" fill="#bdbdb4"/>
-            <rect x="170" y="208" width="140" height="120" fill="#bdbdb4"/>
-            <rect x="324" y="208" width="140" height="120" fill="#bdbdb4"/>
-            <text x="86" y="274" font-family="Arial" font-size="11" fill="#83837b" text-anchor="middle">image.jpg</text>
-            <text x="240" y="274" font-family="Arial" font-size="11" fill="#83837b" text-anchor="middle">image.jpg</text>
-            <text x="394" y="274" font-family="Arial" font-size="11" fill="#83837b" text-anchor="middle">image.jpg</text>
-          </svg>
-        </div>
-        <!-- AFTER pane (replace this SVG with a real screenshot: images/redesign-after.png) -->
-        <div class="ba-pane ba-after" aria-hidden="true">
-          <svg viewBox="0 0 480 360" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#0c1120"/><stop offset="1" stop-color="#070a12"/>
-              </linearGradient>
-              <linearGradient id="gB" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0" stop-color="#3b82f6"/><stop offset="1" stop-color="#5eead4"/>
-              </linearGradient>
-            </defs>
-            <rect width="480" height="360" fill="url(#gA)"/>
-            <circle cx="400" cy="40" r="120" fill="#3b82f6" opacity=".12"/>
-            <rect x="16" y="18" width="110" height="14" rx="3" fill="#e8edf8"/>
-            <rect x="320" y="18" width="34" height="10" rx="2" fill="#3f4f74"/><rect x="362" y="18" width="34" height="10" rx="2" fill="#3f4f74"/><rect x="404" y="14" width="60" height="20" rx="6" fill="#3b82f6"/>
-            <rect x="16" y="84" width="300" height="26" rx="4" fill="#e8edf8"/>
-            <rect x="16" y="118" width="230" height="26" rx="4" fill="url(#gB)"/>
-            <rect x="16" y="160" width="250" height="11" rx="2" fill="#5d6c8d"/>
-            <rect x="16" y="178" width="210" height="11" rx="2" fill="#5d6c8d"/>
-            <rect x="16" y="212" width="120" height="32" rx="8" fill="#3b82f6"/>
-            <rect x="148" y="212" width="120" height="32" rx="8" fill="none" stroke="#3f4f74"/>
-            <rect x="16" y="276" width="140" height="62" rx="10" fill="#101728" stroke="#27314c"/>
-            <rect x="170" y="276" width="140" height="62" rx="10" fill="#101728" stroke="#27314c"/>
-            <rect x="324" y="276" width="140" height="62" rx="10" fill="#101728" stroke="#27314c"/>
-            <rect x="30" y="290" width="60" height="8" rx="2" fill="#3b82f6"/><rect x="30" y="306" width="100" height="7" rx="2" fill="#5d6c8d"/>
-            <rect x="184" y="290" width="60" height="8" rx="2" fill="#5eead4"/><rect x="184" y="306" width="100" height="7" rx="2" fill="#5d6c8d"/>
-            <rect x="338" y="290" width="60" height="8" rx="2" fill="#3b82f6"/><rect x="338" y="306" width="100" height="7" rx="2" fill="#5d6c8d"/>
-          </svg>
-        </div>
-        <div class="ba-handle" aria-hidden="true"></div>
-        <span class="ba-tag before">Before</span>
-        <span class="ba-tag after">After</span>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num"><span data-count="150" data-suffix="+">150+</span></div>
+        <div class="stat-label">Projects Delivered</div>
       </div>
-      <p class="ba-caption">Drag the slider — a typical VectorStudio redesign.</p>
+      <div class="stat">
+        <div class="stat-num"><span data-count="98" data-suffix="%">98%</span></div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5 / 5</div>
+        <div class="stat-label">Average Rating</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3x Faster</div>
+        <div class="stat-label">Faster Delivery</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ SERVICES ============ -->
+<!-- Contact strip -->
+<div class="contact-strip" id="contact">
+  <div class="contact-item">
+    <div class="ic">@</div>
+    <div><div style="font-size:.72rem;color:var(--text-muted);margin-bottom:2px;">EMAIL US</div><a href="mailto:info@vectorstudio.tech">info@vectorstudio.tech</a></div>
+  </div>
+  <div class="contact-item">
+    <div class="ic">TEL</div>
+    <div><div style="font-size:.72rem;color:var(--text-muted);margin-bottom:2px;">CALL US</div><a href="tel:+16478664489">+1 647 866 4489</a></div>
+  </div>
+  <div class="contact-item">
+    <div class="ic">WEB</div>
+    <div><div style="font-size:.72rem;color:var(--text-muted);margin-bottom:2px;">WEBSITE</div><a href="https://vectorstudio.tech">vectorstudio.tech</a></div>
+  </div>
+  <div class="contact-item">
+    <div class="ic">24H</div>
+    <div><div style="font-size:.72rem;color:var(--text-muted);margin-bottom:2px;">RESPONSE TIME</div><span>Within 24 hours</span></div>
+  </div>
+</div>
+
+<!-- ══ SERVICES ══ -->
 <section id="services">
-  <div class="container">
-    <span class="eyebrow reveal">What we do</span>
-    <h2 class="sec-title reveal">Everything your business needs online</h2>
-    <p class="sec-lede reveal">One studio for your whole digital presence — designed and built by the same hands, so nothing gets lost in handoff.</p>
-    <div class="cards">
-      <a class="card reveal" href="web-design.html">
-        <span class="tag">Web</span>
-        <h3>Website Design &amp; Development</h3>
-        <p>Fast, responsive websites built to convert visitors into customers — from landing pages to multi-page business sites and e-commerce.</p>
-        <div class="chips"><span class="chip">Landing Pages</span><span class="chip">E-Commerce</span><span class="chip">Web Apps</span><span class="chip">CMS</span></div>
-      </a>
-      <a class="card reveal" href="branding.html">
-        <span class="tag">Brand</span>
-        <h3>Logo &amp; Brand Identity</h3>
-        <p>Timeless logos and complete brand systems that communicate your values and make a strong first impression.</p>
-        <div class="chips"><span class="chip">Logo Design</span><span class="chip">Brand Kit</span><span class="chip">Style Guide</span></div>
-      </a>
-      <a class="card reveal" href="product-design.html">
-        <span class="tag">UI/UX</span>
-        <h3>Product &amp; UI/UX Design</h3>
-        <p>User-centred design that balances aesthetics with usability — from wireframes to polished, production-ready interfaces.</p>
-        <div class="chips"><span class="chip">UI Design</span><span class="chip">UX Research</span><span class="chip">Prototyping</span></div>
-      </a>
-      <a class="card reveal" href="apps.html">
-        <span class="tag">Apps</span>
-        <h3>Mobile App Development</h3>
-        <p>Cross-platform apps for iOS and Android — beautifully designed and built to scale with your business.</p>
-        <div class="chips"><span class="chip">iOS</span><span class="chip">Android</span><span class="chip">React Native</span><span class="chip">Flutter</span></div>
-      </a>
-    </div>
+  <div class="centered reveal" style="margin-bottom:3rem;">
+    <span class="section-label">What We Do</span>
+    <h2 class="section-title">Everything Your Business Needs</h2>
+    <p class="section-sub">One studio, all your digital needs — websites, branding, product design, and apps built to grow your business.</p>
   </div>
-</section>
-
-<!-- ============ WORK / CASE STUDIES ============ -->
-<section id="work" style="background:var(--bg-2)">
-  <div class="container">
-    <span class="eyebrow reveal">Real work</span>
-    <h2 class="sec-title reveal">Projects you can actually visit</h2>
-    <p class="sec-lede reveal">We're a young studio, and we'd rather show you a handful of real, verifiable projects than a wall of stock-photo case studies. Every status label below is honest.</p>
-
-    <!-- Case 1: Smartline (real, live) -->
-    <article class="case reveal">
-      <div class="shot" aria-hidden="true">
-        <svg viewBox="0 0 520 340">
-          <rect width="520" height="340" fill="#0e1726"/>
-          <rect x="0" y="0" width="520" height="44" fill="#13203a"/>
-          <rect x="18" y="15" width="130" height="14" rx="3" fill="#e8edf8"/>
-          <rect x="300" y="17" width="40" height="10" rx="2" fill="#46598a"/><rect x="348" y="17" width="40" height="10" rx="2" fill="#46598a"/><rect x="396" y="17" width="40" height="10" rx="2" fill="#46598a"/><rect x="444" y="12" width="58" height="20" rx="5" fill="#2563eb"/>
-          <rect x="18" y="78" width="300" height="24" rx="4" fill="#e8edf8"/>
-          <rect x="18" y="112" width="240" height="11" rx="2" fill="#6b7ca3"/>
-          <rect x="18" y="130" width="200" height="11" rx="2" fill="#6b7ca3"/>
-          <rect x="18" y="162" width="110" height="30" rx="6" fill="#2563eb"/>
-          <rect x="18" y="226" width="152" height="92" rx="8" fill="#13203a" stroke="#22325a"/>
-          <rect x="184" y="226" width="152" height="92" rx="8" fill="#13203a" stroke="#22325a"/>
-          <rect x="350" y="226" width="152" height="92" rx="8" fill="#13203a" stroke="#22325a"/>
-          <rect x="32" y="242" width="70" height="9" rx="2" fill="#2563eb"/><rect x="32" y="260" width="110" height="8" rx="2" fill="#6b7ca3"/><rect x="32" y="276" width="90" height="8" rx="2" fill="#6b7ca3"/>
-          <rect x="198" y="242" width="70" height="9" rx="2" fill="#2563eb"/><rect x="198" y="260" width="110" height="8" rx="2" fill="#6b7ca3"/><rect x="198" y="276" width="90" height="8" rx="2" fill="#6b7ca3"/>
-          <rect x="364" y="242" width="70" height="9" rx="2" fill="#2563eb"/><rect x="364" y="260" width="110" height="8" rx="2" fill="#6b7ca3"/><rect x="364" y="276" width="90" height="8" rx="2" fill="#6b7ca3"/>
-        </svg>
-      </div>
-      <div>
-        <span class="status live">Live · Client work</span>
-        <h3>Smartline Industrial</h3>
-        <p>A full 11-page website for an industrial supplier in Mississauga, Ontario — designed, built, and deployed end-to-end by VectorStudio.</p>
-        <ul>
-          <li>11 pages including product pricing and a searchable product catalog</li>
-          <li>Working contact form with spam protection</li>
-          <li>Fully mobile-responsive, fast-loading static build</li>
-          <li>Clean navy &amp; blue identity matched to the industrial sector</li>
-        </ul>
-        <a class="link" href="case-study-smartline.html">Read the full case study →</a>
-      </div>
-    </article>
-
-    <!-- Case 2: Sahara Agencies (in progress) -->
-    <article class="case reveal">
-      <div class="shot" aria-hidden="true">
-        <svg viewBox="0 0 520 340">
-          <defs><linearGradient id="gS" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1c1408"/><stop offset="1" stop-color="#0f0c06"/></linearGradient></defs>
-          <rect width="520" height="340" fill="url(#gS)"/>
-          <circle cx="430" cy="80" r="90" fill="#d4a14a" opacity=".15"/>
-          <rect x="18" y="16" width="120" height="14" rx="3" fill="#f3e7cf"/>
-          <rect x="18" y="84" width="290" height="24" rx="4" fill="#f3e7cf"/>
-          <rect x="18" y="118" width="220" height="22" rx="4" fill="#d4a14a"/>
-          <rect x="18" y="158" width="230" height="11" rx="2" fill="#9a8a68"/>
-          <rect x="18" y="176" width="190" height="11" rx="2" fill="#9a8a68"/>
-          <rect x="18" y="210" width="120" height="30" rx="8" fill="#d4a14a"/>
-          <circle cx="410" cy="240" r="62" fill="#2a2110" stroke="#d4a14a"/>
-          <circle cx="410" cy="240" r="40" fill="#d4a14a" opacity=".25"/>
-        </svg>
-      </div>
-      <div>
-        <span class="status progress">In progress · Client work</span>
-        <h3>Sahara Agencies</h3>
-        <p>Brand identity and website for a Makhana (fox nut) food products business based in Punjab, India — covering packaging-ready branding, product storytelling, and a content-rich site.</p>
-        <ul>
-          <li>Full brand identity for a food/CPG product line</li>
-          <li>Website content strategy and copywriting</li>
-          <li>Designed for export-market credibility</li>
-        </ul>
-        <a class="link" href="#contact">Want yours next? Book a call →</a>
-      </div>
-    </article>
-
-    <!-- Case 3: VectorStudio brand / concept work -->
-    <article class="case reveal">
-      <div class="shot" aria-hidden="true">
-        <svg viewBox="0 0 520 340">
-          <rect width="520" height="340" fill="#070a12"/>
-          <circle cx="260" cy="170" r="110" fill="#3b82f6" opacity=".1"/>
-          <path d="M275 80 195 200h58l-12 70 84-110h-58l8-80z" fill="#3b82f6"/>
-          <rect x="180" y="290" width="160" height="12" rx="3" fill="#27314c"/>
-        </svg>
-      </div>
-      <div>
-        <span class="status concept">Studio &amp; concept work</span>
-        <h3>VectorStudio brand + product concepts</h3>
-        <p>Our own identity system — the VS bolt mark, logo variations, and this website — plus in-house product explorations like <strong>Dive</strong>, a career-discovery app prototype, and <strong>Vector</strong>, a personal AI assistant concept.</p>
-        <ul>
-          <li>SVG logo system with light/dark variations</li>
-          <li>React + Framer site builds</li>
-          <li>Product strategy, prototyping, and UI design</li>
-        </ul>
-        <a class="link" href="branding.html">See our branding services →</a>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ============ FOUNDER / ABOUT ============ -->
-<section id="about">
-  <div class="container founder">
-    <div class="founder-photo reveal">
-      <!-- Replace with: <img src="images/arjun.jpg" alt="Arjun Sagar Dhunna, founder of VectorStudio"> -->
-      <span class="initials">AD</span>
-      <span class="hint">Add your photo: images/arjun.jpg</span>
-    </div>
-    <div class="reveal">
-      <span class="eyebrow">Who you're working with</span>
-      <h2>Hi, I'm Arjun — designer, developer, and the person who answers your emails.</h2>
-      <p>VectorStudio is a small, hands-on studio based in the Greater Toronto Area. I'm a working web designer with a Computer Programming diploma from Seneca Polytechnic, and I currently design for an industrial company in Mississauga while building VectorStudio's client roster.</p>
-      <p>What that means for you: no account managers, no outsourcing roulette, no telephone game. The person on your discovery call is the same person designing your site, writing your code, and replying within 24 hours. Small studio, senior-level care.</p>
-      <p class="sig">— Arjun Sagar Dhunna, Founder</p>
-      <div class="stack">
-        <span class="chip">Figma</span><span class="chip">React</span><span class="chip">Framer</span><span class="chip">JavaScript</span><span class="chip">Node.js</span><span class="chip">Python</span><span class="chip">Shopify</span><span class="chip">Git</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PROCESS ============ -->
-<section style="background:var(--bg-2)" id="process">
-  <div class="container">
-    <span class="eyebrow reveal">Our process</span>
-    <h2 class="sec-title reveal">Simple. Transparent. Effective.</h2>
-    <p class="sec-lede reveal">Working with us is easy — so you can focus on running your business.</p>
-    <div class="steps">
-      <div class="step reveal"><span class="num">STEP 1</span><h4>Discovery Call</h4><p>Free 30-minute consultation — we learn your goals, brand, and vision. No commitment.</p></div>
-      <div class="step reveal"><span class="num">STEP 2</span><h4>Strategy &amp; Quote</h4><p>A tailored plan with a fixed quote, clear timeline, and milestones — before any money changes hands.</p></div>
-      <div class="step reveal"><span class="num">STEP 3</span><h4>Design &amp; Build</h4><p>We execute with regular updates and your feedback at every stage. You always know where things stand.</p></div>
-      <div class="step reveal"><span class="num">STEP 4</span><h4>Launch &amp; Support</h4><p>We handle go-live and stay available afterward — you're never stranded with a site you can't update.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FREE AUDIT BANNER ============ -->
-<section style="padding-top:0;padding-bottom:0;background:var(--bg-2)">
-  <div class="container" style="padding-bottom:96px">
-    <div class="audit reveal">
-      <div>
-        <h3>Not sure yet? Get a free website audit.</h3>
-        <p>Send us your current website and we'll record a short, honest video teardown — 5 specific things costing you customers and how to fix them. Free, within 48 hours, no strings attached.</p>
-      </div>
-      <a class="btn btn-primary" href="mailto:info@vectorstudio.tech?subject=Free%20Website%20Audit%20Request&body=Hi%20VectorStudio%2C%0A%0AMy%20website%20is%3A%20%0AMy%20business%20does%3A%20%0A%0APlease%20send%20me%20a%20free%20audit!">Request Free Audit</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PRICING ============ -->
-<section id="pricing">
-  <div class="container">
-    <span class="eyebrow reveal">Pricing</span>
-    <h2 class="sec-title reveal">Simple monthly plans</h2>
-    <p class="sec-lede reveal">Flexible subscriptions for businesses of every size. Fixed pricing, no hidden fees, cancel anytime. Prefer a one-time project quote? Just ask on your call.</p>
-    <div class="plans">
-      <div class="plan reveal">
-        <h3>Starter</h3>
-        <div class="price">$299<small>/mo</small></div>
-        <p class="desc">Perfect for small businesses and personal brands getting started online.</p>
-        <ul>
-          <li>5-page website design</li>
-          <li>Logo design (3 concepts)</li>
-          <li>Mobile responsive</li>
-          <li>Basic SEO setup</li>
-          <li>2 rounds of revisions</li>
-          <li>Monthly updates included</li>
-          <li>Email support</li>
-        </ul>
-        <a class="btn btn-ghost" href="subscribe.html?plan=starter">Choose Starter</a>
-      </div>
-      <div class="plan popular reveal">
-        <span class="badge">Most Popular</span>
-        <h3>Growth</h3>
-        <div class="price">$799<small>/mo</small></div>
-        <p class="desc">For growing businesses ready to invest seriously in their digital presence.</p>
-        <ul>
-          <li>Custom website (up to 15 pages)</li>
-          <li>Full brand identity kit</li>
-          <li>UI/UX design included</li>
-          <li>CMS integration</li>
-          <li>Unlimited revisions</li>
-          <li>Priority support</li>
-          <li>Monthly strategy call</li>
-          <li>Analytics dashboard</li>
-        </ul>
-        <a class="btn btn-primary" href="subscribe.html?plan=growth">Choose Growth</a>
-      </div>
-      <div class="plan reveal">
-        <h3>Enterprise</h3>
-        <div class="price">Custom</div>
-        <p class="desc">Full-scale projects including apps, platforms, and complete digital ecosystems.</p>
-        <ul>
-          <li>Everything in Growth</li>
-          <li>Mobile app development</li>
-          <li>Product design system</li>
-          <li>Dedicated project manager</li>
-          <li>Ongoing retainer options</li>
-          <li>SLA-backed support</li>
-          <li>White-label available</li>
-        </ul>
-        <a class="btn btn-ghost" href="#contact">Talk to Us</a>
-      </div>
-    </div>
-    <p class="cancel-note">Already subscribed? <a href="cancel.html">Cancel your subscription</a> anytime — no lock-in, no hard feelings.</p>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section id="faq" style="background:var(--bg-2)">
-  <div class="container">
-    <span class="eyebrow reveal">FAQ</span>
-    <h2 class="sec-title reveal">Questions clients actually ask</h2>
-    <p class="sec-lede reveal">If yours isn't here, bring it to your free call — or email us anytime.</p>
-    <div class="faq">
-      <details class="reveal"><summary>Who owns the website when it's done?</summary><div class="a">You do — fully. Design files, code, domain, and content are all yours. If you're on a monthly plan and later cancel, your site stays yours; you just take over hosting and updates.</div></details>
-      <details class="reveal"><summary>What if I don't like the first design?</summary><div class="a">That's what revisions are for. Every project includes revision rounds (unlimited on Growth), and we share progress early and often so we're never far off course. You'll never see a "big reveal" of something you hate.</div></details>
-      <details class="reveal"><summary>How long does a typical project take?</summary><div class="a">Most websites launch in 1–4 weeks depending on size and how quickly content and feedback come together. You'll get a concrete timeline in your fixed quote before we start.</div></details>
-      <details class="reveal"><summary>Do you work with clients outside the GTA or Canada?</summary><div class="a">Yes — we're based in the Greater Toronto Area but work with clients anywhere. Calls are scheduled in EST, and everything else happens over email and shared project updates.</div></details>
-      <details class="reveal"><summary>Monthly plan vs. one-time project — which should I pick?</summary><div class="a">Monthly plans suit businesses that want a site plus ongoing updates, content changes, and support without surprise bills. If you just need a site built once, ask for a one-time fixed quote on your call — we do both.</div></details>
-      <details class="reveal"><summary>Can you fix or redesign my existing website instead of starting over?</summary><div class="a">Absolutely. Redesigns and rescues are some of our favourite projects — start with the free website audit above and we'll tell you honestly whether you need a refresh or a rebuild.</div></details>
-      <details class="reveal"><summary>You're a new studio — why should I trust you?</summary><div class="a">Fair question. Everything in our Work section is real and verifiable — no invented logos or stock-photo case studies. You also work directly with the founder, get a fixed quote up front, and can cancel monthly plans anytime. We win trust by being easy to check up on.</div></details>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CONTACT / BOOKING ============ -->
-<section id="contact">
-  <div class="container contact-grid">
-    <div class="contact-side reveal">
-      <span class="eyebrow">Get started</span>
-      <h2>Ready to build something extraordinary?</h2>
-      <p>Book a free 30-minute discovery call. No commitment — just clear ideas and a concrete plan for your project. We reply within 24 hours.</p>
-      <div class="contact-rows">
-        <div class="crow"><span class="ic">@</span><div><a href="mailto:info@vectorstudio.tech">info@vectorstudio.tech</a><br><small style="color:var(--muted)">Email us directly</small></div></div>
-        <div class="crow"><span class="ic">TEL</span><div><a href="tel:+16478664489">+1 (647) 866-4489</a><br><small style="color:var(--muted)">Mon–Sat, 9am–7pm EST</small></div></div>
-        <div class="crow"><span class="ic">24H</span><div>Response within 24 hours<br><small style="color:var(--muted)">Usually much faster</small></div></div>
-      </div>
-    </div>
-    <div class="form reveal">
-      <div id="formBody">
-        <h3>Book your free discovery call</h3>
-        <p class="sub">Tell us a little about your project and pick a time that suits you.</p>
-        <div class="fgrid">
-          <div class="field"><label for="fName">Full name *</label><input id="fName" type="text" required autocomplete="name"></div>
-          <div class="field"><label for="fEmail">Email *</label><input id="fEmail" type="email" required autocomplete="email"></div>
-          <div class="field"><label for="fPhone">Phone</label><input id="fPhone" type="tel" autocomplete="tel"></div>
-          <div class="field"><label for="fBiz">Business name *</label><input id="fBiz" type="text" required></div>
-          <div class="field full"><label for="fService">Service you're interested in *</label>
-            <select id="fService" required>
-              <option value="">Select a service…</option>
-              <option>Website Design &amp; Development</option>
-              <option>Logo &amp; Brand Identity</option>
-              <option>Product / UI-UX Design</option>
-              <option>Mobile App Development</option>
-              <option>Full Package (Website + Branding + App)</option>
-              <option>Free Website Audit</option>
-              <option>Not sure yet — need advice</option>
-            </select>
-          </div>
-          <div class="field"><label for="fDate">Preferred date *</label><input id="fDate" type="date" required></div>
-          <div class="field"><label for="fTime">Preferred time (EST) *</label>
-            <select id="fTime" required>
-              <option value="">Choose a time…</option>
-              <option>Morning — 9:00 AM–12:00 PM</option>
-              <option>Afternoon — 12:00–5:00 PM</option>
-              <option>Evening — 5:00–7:00 PM</option>
-            </select>
-          </div>
-          <div class="field full"><label for="fMsg">Tell us about your project</label><textarea id="fMsg" placeholder="What are you building? What's the goal?"></textarea></div>
+  <div class="services-grid">
+    <a href="web-design.html" class="service-card reveal delay-1" data-tilt="6">
+      <img class="service-img" src="images/web-design.jpg" alt="Web design" loading="lazy"  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1547658719-da2b51169166?w=1200&q=80&auto=format&fit=crop'" />
+      <div class="service-body">
+        <div class="service-icon-row">
+          <div class="service-icon-badge">WEB</div>
+          <div class="service-arrow">View</div>
         </div>
-        <button class="btn btn-primary" onclick="submitForm()">Book My Free Call</button>
-        <p class="calendly-note">Prefer to pick a slot instantly? <a href="https://calendly.com/" target="_blank" rel="noopener">Book on our calendar →</a><br><small>(Set up a free Calendly/Cal.com account and replace this link)</small></p>
+        <h3>Website Design & Development</h3>
+        <p>Fast, responsive websites built to convert visitors into customers — from landing pages to full e-commerce platforms.</p>
+        <div class="service-tags"><span class="tag">Landing Pages</span><span class="tag">E-Commerce</span><span class="tag">Web Apps</span><span class="tag">CMS</span></div>
       </div>
-      <div class="form-ok" id="formOk">
-        <div class="check">✓</div>
-        <h3>You're booked in!</h3>
-        <p class="sub" style="margin-top:8px">Thanks — we've received your request and will confirm your call within 24 hours at the email you provided.<br><br>Questions in the meantime? Call <a href="tel:+16478664489" style="color:var(--blue)">+1 (647) 866-4489</a>.</p>
+    </a>
+    <a href="branding.html" class="service-card reveal delay-2" data-tilt="6">
+      <img class="service-img" src="images/branding-logo.jpg" alt="Branding" loading="lazy"  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1626785774573-4b799315345d?w=1200&q=80&auto=format&fit=crop'" />
+      <div class="service-body">
+        <div class="service-icon-row">
+          <div class="service-icon-badge">BRAND</div>
+          <div class="service-arrow">View</div>
+        </div>
+        <h3>Logo & Brand Identity</h3>
+        <p>Timeless logos and complete brand systems that communicate your values and make a lasting first impression.</p>
+        <div class="service-tags"><span class="tag">Logo Design</span><span class="tag">Brand Kit</span><span class="tag">Style Guide</span></div>
+      </div>
+    </a>
+    <a href="product-design.html" class="service-card reveal delay-3" data-tilt="6">
+      <img class="service-img" src="images/product-design.jpg" alt="Product design" loading="lazy"  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1200&q=80&auto=format&fit=crop'" />
+      <div class="service-body">
+        <div class="service-icon-row">
+          <div class="service-icon-badge">UI/UX</div>
+          <div class="service-arrow">View</div>
+        </div>
+        <h3>Product & UI/UX Design</h3>
+        <p>User-centered design balancing aesthetics with usability — from wireframes to polished, production-ready interfaces.</p>
+        <div class="service-tags"><span class="tag">UI Design</span><span class="tag">UX Research</span><span class="tag">Prototyping</span></div>
+      </div>
+    </a>
+    <a href="apps.html" class="service-card reveal delay-4" data-tilt="6">
+      <img class="service-img" src="images/app-development.jpg" alt="App development" loading="lazy"  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200&q=80&auto=format&fit=crop'" />
+      <div class="service-body">
+        <div class="service-icon-row">
+          <div class="service-icon-badge">APP</div>
+          <div class="service-arrow">View</div>
+        </div>
+        <h3>Mobile App Development</h3>
+        <p>Native and cross-platform apps for iOS and Android — beautifully designed and powerfully built to scale.</p>
+        <div class="service-tags"><span class="tag">iOS</span><span class="tag">Android</span><span class="tag">React Native</span><span class="tag">Flutter</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ══ PROCESS ══ -->
+<section id="process">
+  <div class="centered reveal" style="margin-bottom:0;">
+    <span class="section-label">Our Process</span>
+    <h2 class="section-title">Simple. Transparent. Effective.</h2>
+    <p class="section-sub">We make working with us easy — so you can focus on running your business.</p>
+  </div>
+  <div class="process-track">
+    <div class="process-step reveal delay-1"><div class="step-num">1</div><h4>Discovery Call</h4><p>Free 30-min consultation — we learn your goals, brand, and vision.</p></div>
+    <div class="process-step reveal delay-2"><div class="step-num">2</div><h4>Strategy & Proposal</h4><p>Tailored plan with a fixed quote, clear timeline, and milestones.</p></div>
+    <div class="process-step reveal delay-3"><div class="step-num">3</div><h4>Design & Build</h4><p>Our team executes with regular updates and your feedback at each stage.</p></div>
+    <div class="process-step reveal delay-4"><div class="step-num">4</div><h4>Launch & Support</h4><p>We handle go-live and provide ongoing support so you're never stranded.</p></div>
+  </div>
+</section>
+
+<!-- ══ WHY US ══ -->
+<section id="why">
+  <div class="why-grid">
+    <div class="reveal-left">
+      <span class="section-label">Why VectorStudio</span>
+      <h2 class="section-title">Built for Results,<br />Not Just Looks</h2>
+      <p class="section-sub">Every pixel, every line of code — made with your business growth in mind.</p>
+      <div class="why-list">
+        <div class="why-item"><div class="why-icon">Fast</div><div><h4>Fast Turnaround</h4><p>Most projects delivered in 1–4 weeks without cutting corners on quality.</p></div></div>
+        <div class="why-item"><div class="why-icon">Price</div><div><h4>Transparent Pricing</h4><p>No hidden fees, no surprise invoices. Fixed quotes from day one.</p></div></div>
+        <div class="why-item"><div class="why-icon">Team</div><div><h4>Dedicated Support</h4><p>A dedicated point of contact throughout — real humans, not chatbots.</p></div></div>
+        <div class="why-item"><div class="why-icon">Growth</div><div><h4>Growth-Focused Design</h4><p>Every decision is tied to your conversion goals and long-term growth.</p></div></div>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <div class="metrics-panel bar-section" data-tilt="5">
+        <div class="metric-cards">
+          <div class="metric-card"><div class="num" data-count="150" data-suffix="+">150+</div><div class="lbl">Projects Done</div></div>
+          <div class="metric-card"><div class="num" data-count="98" data-suffix="%">98%</div><div class="lbl">Satisfaction</div></div>
+          <div class="metric-card"><div class="num" data-count="14" data-suffix=" days">14 days</div><div class="lbl">Avg. Delivery</div></div>
+          <div class="metric-card"><div class="num" data-count="40" data-suffix="+">40+</div><div class="lbl">Industries</div></div>
+        </div>
+        <div>
+          <div class="bar-row"><div class="bar-label-row"><span>Web Design</span><span>95%</span></div><div class="bar"><div class="bar-fill" style="width:95%"></div></div></div>
+          <div class="bar-row" style="margin-top:.75rem"><div class="bar-label-row"><span>App Development</span><span>88%</span></div><div class="bar"><div class="bar-fill" style="width:88%"></div></div></div>
+          <div class="bar-row" style="margin-top:.75rem"><div class="bar-label-row"><span>Brand Identity</span><span>92%</span></div><div class="bar"><div class="bar-fill" style="width:92%"></div></div></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
+<!-- ══ PORTFOLIO ══ -->
+<section id="portfolio">
+  <div class="centered reveal" style="margin-bottom:0;">
+    <span class="section-label">Our Work</span>
+    <h2 class="section-title">Projects We're Proud Of</h2>
+    <p class="section-sub">A glimpse into the brands and digital products we've built for clients worldwide.</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item reveal delay-1"><div class="portfolio-thumb"><img src="images/portfolio-ecommerce.jpg" alt="E-commerce" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80&auto=format&fit=crop'" /><div class="portfolio-overlay"></div><div class="portfolio-badge">E-Commerce</div></div><div class="portfolio-info"><h4>Luxe Retail Co.</h4><p>Custom Shopify store — 3x Faster conversion uplift in the first 60 days post-launch.</p><div class="portfolio-link">View case study <span>→</span></div></div></div>
+    <div class="portfolio-item reveal delay-2"><div class="portfolio-thumb"><img src="images/portfolio-branding.jpg" alt="Branding" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80&auto=format&fit=crop'" /><div class="portfolio-overlay"></div><div class="portfolio-badge">Brand Identity</div></div><div class="portfolio-info"><h4>Apex Finance Group</h4><p>Complete rebrand — logo, color system, typography, and full brand guidelines.</p><div class="portfolio-link">View case study <span>→</span></div></div></div>
+    <div class="portfolio-item reveal delay-3"><div class="portfolio-thumb"><img src="images/portfolio-fitness-app.jpg" alt="Fitness App" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&auto=format&fit=crop'" /><div class="portfolio-overlay"></div><div class="portfolio-badge">Mobile App</div></div><div class="portfolio-info"><h4>FitTrack Health App</h4><p>iOS & Android fitness tracker — 20K+ downloads in the first 3 months.</p><div class="portfolio-link">View case study <span>→</span></div></div></div>
+    <div class="portfolio-item reveal delay-1"><div class="portfolio-thumb"><img src="images/portfolio-saas.jpg" alt="Dashboard" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&auto=format&fit=crop'" /><div class="portfolio-overlay"></div><div class="portfolio-badge">UI/UX Design</div></div><div class="portfolio-info"><h4>Novu SaaS Dashboard</h4><p>Full product design for a B2B SaaS platform — research to final handoff.</p><div class="portfolio-link">View case study <span>→</span></div></div></div>
+    <div class="portfolio-item reveal delay-2"><div class="portfolio-thumb"><img src="images/portfolio-marketing.jpg" alt="Marketing" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop'" /><div class="portfolio-overlay"></div><div class="portfolio-badge">Website</div></div><div class="portfolio-info"><h4>Bloom Creative Agency</h4><p>Marketing site with animated hero, case studies, and an integrated CRM lead form.</p><div class="portfolio-link">View case study <span>→</span></div></div></div>
+    <div class="portfolio-item reveal delay-3"><div class="portfolio-thumb"><img src="images/portfolio-startup.jpg" alt="Startup" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80&auto=format&fit=crop'" /><div class="portfolio-overlay"></div><div class="portfolio-badge">Full Package</div></div><div class="portfolio-info"><h4>LaunchPad Startup Kit</h4><p>Branding + website + MVP app for a funded Series A startup — delivered in 3 weeks.</p><div class="portfolio-link">View case study <span>→</span></div></div></div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section id="testimonials">
+  <div class="centered reveal" style="margin-bottom:0;">
+    <span class="section-label">Client Reviews</span>
+    <h2 class="section-title">What Our Clients Say</h2>
+    <p class="section-sub">Don't take our word for it — hear from businesses we've helped grow.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal delay-1">
+      <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <div class="quote">&ldquo;</div>
+      <p>VectorStudio completely transformed our online presence. Our new website looks incredible and sales have gone up noticeably since launch. Highly recommend to any business!</p>
+      <div class="reviewer"><div class="avatar">S</div><div class="reviewer-info"><h5>Sarah Mitchell</h5><span>CEO, Luxe Retail Co.</span></div></div>
+    </div>
+    <div class="testimonial-card reveal delay-2">
+      <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <div class="quote">&ldquo;</div>
+      <p>The logo and brand kit they delivered exceeded every expectation. Professional, fast, and they genuinely listened to what we wanted. Will use them again for our app.</p>
+      <div class="reviewer"><div class="avatar">J</div><div class="reviewer-info"><h5>James Park</h5><span>Founder, Apex Finance Group</span></div></div>
+    </div>
+    <div class="testimonial-card reveal delay-3">
+      <div class="stars"><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div></div>
+      <div class="quote">&ldquo;</div>
+      <p>They built our entire app from scratch in under 4 weeks. Top-notch quality, clear communication at every step, and the app actually works flawlessly. Phenomenal team.</p>
+      <div class="reviewer"><div class="avatar">A</div><div class="reviewer-info"><h5>Aisha Thompson</h5><span>Co-Founder, FitTrack</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRICING ══ -->
+<section id="pricing">
+  <div class="centered reveal" style="margin-bottom:0;">
+    <span class="section-label">Pricing</span>
+    <h2 class="section-title">Simple Monthly Plans</h2>
+    <p class="section-sub">Flexible subscriptions for businesses of every size. Cancel anytime.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal delay-1" data-tilt="5">
+      <div class="pricing-tier">Starter</div>
+      <div class="pricing-price"><sup>$</sup>299<sub>/mo</sub></div>
+      <div class="pricing-desc">Perfect for small businesses and personal brands just getting started online.</div>
+      <ul class="pricing-features">
+        <li><div class="check">OK</div> 5-Page Website Design</li>
+        <li><div class="check">OK</div> Logo Design (3 concepts)</li>
+        <li><div class="check">OK</div> Mobile Responsive</li>
+        <li><div class="check">OK</div> Basic SEO Setup</li>
+        <li><div class="check">OK</div> 2 Rounds of Revisions</li>
+        <li><div class="check">OK</div> Monthly Updates Included</li>
+        <li><div class="check">OK</div> Email Support</li>
+      </ul>
+      <a class="btn-plan outline" href="subscribe.html?plan=starter" style="text-decoration:none;">Get Started</a>
+    </div>
+    <div class="pricing-card featured reveal delay-2" data-tilt="5">
+      <div class="pricing-badge">Most Popular</div>
+      <div class="pricing-tier">Growth</div>
+      <div class="pricing-price"><sup>$</sup>799<sub>/mo</sub></div>
+      <div class="pricing-desc">For growing businesses ready to invest seriously in their digital presence.</div>
+      <ul class="pricing-features">
+        <li><div class="check">OK</div> Custom Website (up to 15 pages)</li>
+        <li><div class="check">OK</div> Full Brand Identity Kit</li>
+        <li><div class="check">OK</div> UI/UX Design Included</li>
+        <li><div class="check">OK</div> CMS Integration</li>
+        <li><div class="check">OK</div> Unlimited Revisions</li>
+        <li><div class="check">OK</div> Priority Support</li>
+        <li><div class="check">OK</div> Monthly Strategy Call</li>
+        <li><div class="check">OK</div> Analytics Dashboard</li>
+      </ul>
+      <a class="btn-plan primary" href="subscribe.html?plan=growth" style="text-decoration:none;">Get Started</a>
+    </div>
+    <div class="pricing-card reveal delay-3" data-tilt="5">
+      <div class="pricing-tier">Enterprise</div>
+      <div class="pricing-price" style="font-size:2.2rem;">Custom</div>
+      <div class="pricing-desc">Full-scale projects including apps, platforms, and complete digital ecosystems.</div>
+      <ul class="pricing-features">
+        <li><div class="check">OK</div> Everything in Growth</li>
+        <li><div class="check">OK</div> Mobile App Development</li>
+        <li><div class="check">OK</div> Product Design System</li>
+        <li><div class="check">OK</div> Dedicated Project Manager</li>
+        <li><div class="check">OK</div> Ongoing Retainer Options</li>
+        <li><div class="check">OK</div> SLA-backed Support</li>
+        <li><div class="check">OK</div> White-label Available</li>
+      </ul>
+      <button class="btn-plan outline" data-book>Talk to Us</button>
+    </div>
+  </div>
+  <p style="text-align:center;margin-top:2rem;font-size:.82rem;color:var(--text-muted);">
+    Already subscribed? <a href="cancel.html" style="color:var(--blue-light);text-decoration:none;">Cancel your subscription</a>
+  </p>
+</section>
+
+<!-- ══ CTA ══ -->
+<section id="cta">
+  <div class="cta-ring"></div><div class="cta-ring"></div><div class="cta-ring"></div>
+  <h2 class="section-title reveal">Ready to Build Something<br /><span style="color:var(--blue-light)">Extraordinary?</span></h2>
+  <p class="section-sub reveal">Book a free 30-minute discovery call. No commitment, just great ideas and a clear plan.</p>
+  <div class="hero-actions centered-actions reveal">
+    <a href="#" class="btn btn-primary" data-book>Book a Free Call</a>
+    <a href="mailto:info@vectorstudio.tech" class="btn btn-ghost">Email Us Directly</a>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
 <footer>
-  <div class="container">
-    <div class="foot-grid">
-      <div>
-        <a class="logo" href="#top" style="margin-bottom:16px">
-          <svg class="bolt" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z" fill="#3b82f6"/></svg>
-          VectorStudio
-        </a>
-        <p>A hands-on design studio in the Greater Toronto Area, building websites, brands, and apps that earn their keep.</p>
-        <p><a href="mailto:info@vectorstudio.tech">info@vectorstudio.tech</a></p>
-        <p><a href="tel:+16478664489">+1 (647) 866-4489</a></p>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Vector<span>Studio</span></a>
+      <p>We help businesses of all sizes build digital products that look great and perform even better. Trusted by 150+ clients across 40+ industries worldwide.</p>
+      <div class="footer-contact">
+        <a href="mailto:info@vectorstudio.tech">Email: info@vectorstudio.tech</a>
+        <a href="tel:+16478664489">Phone: +1 647 866 4489</a>
+        <a href="https://vectorstudio.tech">Web: vectorstudio.tech</a>
       </div>
-      <div>
-        <h5>Services</h5>
-        <a href="web-design.html">Web Design &amp; Dev</a>
-        <a href="branding.html">Logo &amp; Branding</a>
-        <a href="product-design.html">Product Design</a>
-        <a href="apps.html">App Development</a>
-      </div>
-      <div>
-        <h5>Studio</h5>
-        <a href="#about">About</a>
-        <a href="#work">Our Work</a>
-        <a href="#process">Process</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
-      </div>
-      <div>
-        <h5>Get in touch</h5>
-        <a href="#contact">Book a Free Call</a>
-        <a href="mailto:info@vectorstudio.tech?subject=Free%20Website%20Audit%20Request">Free Website Audit</a>
-        <a href="https://www.linkedin.com/in/asdhunna" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/ArjunSagarDhunna" target="_blank" rel="noopener">GitHub</a>
+      <div class="social-links">
+        <a href="#" class="social-link">X</a>
+        <a href="#" class="social-link">in</a>
+        <a href="#" class="social-link">IG</a>
+        <a href="#" class="social-link">DR</a>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 VectorStudio. All rights reserved.</span>
-      <span><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></span>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="web-design.html">Web Design & Dev</a></li>
+        <li><a href="branding.html">Logo & Branding</a></li>
+        <li><a href="product-design.html">Product Design</a></li>
+        <li><a href="apps.html">App Development</a></li>
+      </ul>
     </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#why">About Us</a></li>
+        <li><a href="#portfolio">Our Work</a></li>
+        <li><a href="#process">Our Process</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Get in Touch</h5>
+      <ul>
+        <li><a href="mailto:info@vectorstudio.tech">Email Us</a></li>
+        <li><a href="tel:+16478664489">Call Us</a></li>
+        <li><a href="#" data-book>Book a Call</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 VectorStudio. All rights reserved. <a href="https://vectorstudio.tech">vectorstudio.tech</a></p>
+    <p>Privacy Policy · Terms of Service</p>
   </div>
 </footer>
 
-<script>
-/* theme: dark by default, respects saved choice then system preference */
-(function(){
-  let saved=null;
-  try{saved=localStorage.getItem('vs-theme');}catch(e){}
-  const prefersLight=window.matchMedia('(prefers-color-scheme: light)').matches;
-  const theme=saved||(prefersLight?'light':'dark');
-  applyTheme(theme);
-})();
-function applyTheme(t){
-  if(t==='light'){document.documentElement.setAttribute('data-theme','light');}
-  else{document.documentElement.removeAttribute('data-theme');}
-  const b=document.getElementById('themeBtn');
-  if(b)b.textContent=(t==='light')?'☀':'☾';
-}
-function toggleTheme(){
-  const isLight=document.documentElement.getAttribute('data-theme')==='light';
-  const next=isLight?'dark':'light';
-  applyTheme(next);
-  try{localStorage.setItem('vs-theme',next);}catch(e){}
-}
-/* mobile menu */
-function toggleMenu(){
-  const m=document.getElementById('mobileMenu');
-  m.style.display=(m.style.display==='flex')?'none':'flex';
-}
+<!-- ══ BOOKING MODAL ══ -->
+<div class="modal-backdrop" id="bookingModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Book a Free Call">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <div id="formBody">
+      <h3>Book Your Free Discovery Call</h3>
+      <p class="modal-sub">Fill in your details and we'll get back to you within 24 hours to confirm your appointment. </p>
+      <form id="bookingForm">
+        <!-- anti-spam honeypot -->
+        <input type="text" name="_honey" style="display:none" />
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fname">Full Name *</label>
+            <input type="text" id="fname" name="Full Name" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="femail">Email *</label>
+            <input type="email" id="femail" name="Email" placeholder="jane@company.com" required />
+          </div>
+          <div class="form-group">
+            <label for="fphone">Phone Number</label>
+            <input type="tel" id="fphone" name="Phone" placeholder="+1 000 000 0000" />
+          </div>
+          <div class="form-group">
+            <label for="fbiz">Business Name *</label>
+            <input type="text" id="fbiz" name="Business Name" placeholder="Acme Corp" required />
+          </div>
+          <div class="form-group full">
+            <label for="findustry">Industry / Business Type</label>
+            <input type="text" id="findustry" name="Industry" placeholder="e.g. Fashion, Real Estate, SaaS…" />
+          </div>
+          <div class="form-group full">
+            <label for="fservice">Service You're Interested In *</label>
+            <select id="fservice" name="Service Needed" required>
+              <option value="" disabled selected>Select a service…</option>
+              <option>Website Design & Development</option>
+              <option>Logo & Brand Identity</option>
+              <option>Product / UI UX Design</option>
+              <option>Mobile App Development</option>
+              <option>Full Package (Website + Branding + App)</option>
+              <option>Not sure yet — need advice</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="fdesc">Tell Us About Your Project</label>
+            <textarea id="fdesc" name="Project Details" placeholder="Briefly describe what you're looking to build, your goals, timeline, or any questions you have…"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="fdate">Preferred Date *</label>
+            <input type="date" id="fdate" name="Preferred Date" required />
+          </div>
+          <div class="form-group">
+            <label for="ftime">Preferred Time (EST) *</label>
+            <select id="ftime" name="Preferred Time" required>
+              <option value="" disabled selected>Choose a time…</option>
+              <option>Morning — 9:00 AM – 12:00 PM</option>
+              <option>Afternoon — 12:00 PM – 5:00 PM</option>
+              <option>Evening — 5:00 PM – 7:00 PM</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="fhear">How did you hear about us?</label>
+            <select id="fhear" name="How They Heard">
+              <option value="">Select…</option>
+              <option>Google Search</option>
+              <option>Social Media</option>
+              <option>Referral from a Friend</option>
+              <option>LinkedIn</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">Book My Appointment</button>
+      </form>
+    </div>
+    <div class="form-success" id="formSuccess">
+      <div class="success-icon">OK</div>
+      <h4>You're booked in!</h4>
+      <p>Thank you! We've received your request and will confirm your appointment at <strong>info@vectorstudio.tech</strong> or by phone within 24 hours.</p>
+      <p style="margin-top:.75rem;font-size:.82rem;color:var(--text-muted);">Questions in the meantime? Call us at <a href="tel:+16478664489" style="color:var(--blue-light)">+1 647 866 4489</a></p>
+    </div>
+  </div>
+</div>
 
-/* booking form (front-end demo — wire to Web3Forms like Smartline, or replace with Calendly embed) */
-function submitForm(){
-  const req=['fName','fEmail','fBiz','fService','fDate','fTime'];
-  for(const id of req){
-    const el=document.getElementById(id);
-    if(!el.value){el.focus();el.style.borderColor='#ef4444';setTimeout(()=>el.style.borderColor='',1800);return;}
-  }
-  /* TODO: send to Web3Forms:
-     fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},
-       body:JSON.stringify({access_key:'YOUR_WEB3FORMS_KEY', name:fName.value, email:fEmail.value, ...})});
-  */
-  document.getElementById('formBody').style.display='none';
-  document.getElementById('formOk').style.display='block';
-}
-
-/* before/after slider */
-(function(){
-  const wrap=document.getElementById('baSlider');
-  if(!wrap)return;
-  let dragging=false;
-  function setCut(clientX){
-    const r=wrap.getBoundingClientRect();
-    let p=((clientX-r.left)/r.width)*100;
-    p=Math.max(2,Math.min(98,p));
-    wrap.style.setProperty('--cut',p+'%');
-  }
-  wrap.addEventListener('pointerdown',e=>{dragging=true;wrap.setPointerCapture(e.pointerId);setCut(e.clientX);});
-  wrap.addEventListener('pointermove',e=>{if(dragging)setCut(e.clientX);});
-  wrap.addEventListener('pointerup',()=>dragging=false);
-  wrap.addEventListener('pointercancel',()=>dragging=false);
-})();
-
-/* scroll reveal */
-(function(){
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));return;
-  }
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
-  },{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-})();
-</script>
+<script src="script.js"></script>
 </body>
 </html>
