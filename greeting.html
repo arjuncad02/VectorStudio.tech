@@ -193,6 +193,36 @@ html,body{height:100%;background:#08090b;overflow:hidden;font-family:'Inter',sys
 .ripple{position:absolute;border-radius:50%;background:rgba(235,236,238,.4);transform:translate(-50%,-50%) scale(0);pointer-events:none;animation:rip .65s ease-out forwards}
 @keyframes rip{to{transform:translate(-50%,-50%) scale(14);opacity:0}}
 
+/* Save Card button */
+.save-btn{
+  margin-top:10px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:10px 12px;border-radius:12px;cursor:pointer;flex:none;
+  background:rgba(200,202,210,.05);border:1px solid rgba(200,202,210,.22);
+  color:var(--hud);font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;
+  transition:transform .2s, background .2s, border-color .2s;
+}
+.save-btn:active{transform:scale(.97)}
+.save-btn.is-busy{opacity:.65;pointer-events:none}
+.save-btn.is-busy svg{animation:spin .8s linear infinite}
+.save-btn.is-done{border-color:rgba(57,230,168,.5);color:var(--green)}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* toast feedback */
+.toast{
+  position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);
+  background:rgba(15,16,20,.92);border:1px solid rgba(210,212,218,.2);color:#f3f1ec;
+  font-family:'Inter',sans-serif;font-size:12.5px;padding:11px 18px;border-radius:30px;
+  opacity:0;pointer-events:none;transition:opacity .25s, transform .25s;z-index:50;
+  box-shadow:0 12px 30px rgba(0,0,0,.4);white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* freeze + clean up the face for a crisp static export */
+.front.capture-mode .save-btn{display:none}
+.front.capture-mode::after{animation:none;opacity:0}
+.front.capture-mode .nfc-sym::after{display:none}
+.front.capture-mode .nfc .arrow{animation:none}
+
 /* ── BACK / DASHBOARD — neon reserved for the data visuals here ── */
 .back{display:flex;flex-direction:column;padding:18px 16px 14px;gap:9px;min-height:100%}
 .lightning{position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(43,210,255,.4),transparent 60%);opacity:0;pointer-events:none;mix-blend-mode:screen}
@@ -263,6 +293,7 @@ canvas.line{width:100%;height:56px;display:block}
   .tilt{transform:rotateY(-8deg) rotateX(4deg)}
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 <div class="stage">
@@ -314,6 +345,11 @@ canvas.line{width:100%;height:56px;display:block}
             <div class="nfc-txt"><b>TAP TO CONNECT</b><span>NFC · SECURE EXCHANGE</span></div>
             <span class="arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
           </div>
+
+          <button class="save-btn" id="saveBtn" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span id="saveBtnTxt">SAVE CARD</span>
+          </button>
         </div>
 
         <!-- BACK -->
@@ -370,6 +406,7 @@ canvas.line{width:100%;height:56px;display:block}
   </div>
 
   <div class="hint">TAP CARD OR SWIPE TO <span>FLIP</span></div>
+  <div class="toast" id="toast"></div>
 </div>
 
 <script>
@@ -413,7 +450,7 @@ nfc.addEventListener('click',e=>{
   nfc.appendChild(r);setTimeout(()=>r.remove(),700);
   setTimeout(()=>setFlip(true),140);
 });
-front.addEventListener('click',e=>{ if(!e.target.closest('#nfc') && !e.target.closest('.contact')) setFlip(true); });
+front.addEventListener('click',e=>{ if(!e.target.closest('#nfc') && !e.target.closest('.contact') && !e.target.closest('#saveBtn')) setFlip(true); });
 backBtn.addEventListener('click',e=>{e.stopPropagation();setFlip(false);});
 
 /* swipe + drag */
@@ -537,6 +574,90 @@ function scheduleLightning(){
   }
   setTimeout(strike,1800);
 }
+
+/* ── SAVE CARD AS IMAGE ── */
+const toastEl=document.getElementById('toast');
+let toastTimer=null;
+function showToast(msg,ms=2600){
+  toastEl.textContent=msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>toastEl.classList.remove('show'),ms);
+}
+
+const saveBtn=document.getElementById('saveBtn');
+const saveBtnTxt=document.getElementById('saveBtnTxt');
+
+saveBtn.addEventListener('click', async (e)=>{
+  e.stopPropagation();
+  if(saveBtn.classList.contains('is-busy')) return;
+  saveBtn.classList.add('is-busy');
+  saveBtnTxt.textContent='RENDERING…';
+
+  // freeze animations on the front face for a clean static capture
+  const target=document.getElementById('front');
+  target.classList.add('capture-mode');
+
+  try{
+    if(typeof html2canvas==='undefined'){
+      throw new Error('html2canvas unavailable');
+    }
+    const canvas=await html2canvas(target,{
+      backgroundColor:null,
+      useCORS:true,
+      scale:Math.min(3, (window.devicePixelRatio||2)+1),
+      logging:false,
+    });
+
+    canvas.toBlob(async (blob)=>{
+      target.classList.remove('capture-mode');
+      if(!blob){
+        saveBtn.classList.remove('is-busy');
+        saveBtnTxt.textContent='SAVE CARD';
+        showToast('Could not render the card. Try again.');
+        return;
+      }
+      const file=new File([blob],'vector-studio-card.png',{type:'image/png'});
+
+      // Prefer native share sheet (lets the person pick Photos / AirDrop / Messages)
+      if(navigator.canShare && navigator.canShare({files:[file]})){
+        try{
+          await navigator.share({files:[file], title:'Vector Studio — Digital Card'});
+          saveBtn.classList.remove('is-busy');
+          saveBtn.classList.add('is-done');
+          saveBtnTxt.textContent='SAVED';
+          showToast('Card ready — choose "Save Image" to add it to Photos.');
+          setTimeout(()=>{saveBtn.classList.remove('is-done');saveBtnTxt.textContent='SAVE CARD';},2600);
+          return;
+        }catch(shareErr){
+          // user cancelled the share sheet — not an error, just stop quietly
+          saveBtn.classList.remove('is-busy');
+          saveBtnTxt.textContent='SAVE CARD';
+          return;
+        }
+      }
+
+      // Fallback: trigger a direct download (desktop browsers, or no Web Share support)
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a');
+      a.href=url; a.download='vector-studio-card.png';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(()=>URL.revokeObjectURL(url), 4000);
+
+      saveBtn.classList.remove('is-busy');
+      saveBtn.classList.add('is-done');
+      saveBtnTxt.textContent='DOWNLOADED';
+      showToast('Image downloaded — open it and tap Share → Save to Photos.');
+      setTimeout(()=>{saveBtn.classList.remove('is-done');saveBtnTxt.textContent='SAVE CARD';},2600);
+    },'image/png');
+
+  }catch(err){
+    target.classList.remove('capture-mode');
+    saveBtn.classList.remove('is-busy');
+    saveBtnTxt.textContent='SAVE CARD';
+    showToast('Saving isn\'t supported in this browser.');
+  }
+});
 </script>
 </body>
 </html>
