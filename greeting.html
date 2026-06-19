@@ -108,14 +108,15 @@ html,body{height:100%;background:#08090b;overflow:hidden;font-family:'Inter',sys
   50%{transform:rotateY(19deg) rotateX(3deg)}
 }
 .flipper{
-  position:relative;width:100%;height:548px;transform-style:preserve-3d;
+  position:relative;width:100%;height:560px;max-height:78vh;transform-style:preserve-3d;
   transition:transform 1s cubic-bezier(.7,0,.2,1);
 }
 .flipper.flipped{transform:rotateY(180deg)}
 
 .face{
-  position:absolute;inset:0;border-radius:24px;overflow:hidden;
+  position:absolute;inset:0;border-radius:24px;overflow-y:auto;overflow-x:hidden;
   -webkit-backface-visibility:hidden;backface-visibility:hidden;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
   /* matte navy → light gradient, no glassy blur */
   background:
     linear-gradient(155deg,#e8eaee 0%,#aab3c2 16%,#46506b 38%,#1c2440 62%,#0c1226 84%,#070a17 100%);
@@ -126,6 +127,7 @@ html,body{height:100%;background:#08090b;overflow:hidden;font-family:'Inter',sys
     inset 0 1px 0 rgba(235,236,238,.22),
     inset 0 -30px 60px rgba(0,0,0,.25);
 }
+.face::-webkit-scrollbar{display:none}
 /* matte rim */
 .face::before{
   content:"";position:absolute;inset:0;border-radius:24px;padding:1px;pointer-events:none;
@@ -145,7 +147,7 @@ html,body{height:100%;background:#08090b;overflow:hidden;font-family:'Inter',sys
 .face-back{transform:rotateY(180deg)}
 
 /* ── FRONT CONTENT ── */
-.front{display:flex;flex-direction:column;padding:26px 24px 20px}
+.front{display:flex;flex-direction:column;padding:26px 24px 20px;min-height:100%}
 .brandrow{display:flex;align-items:center;gap:10px;margin-bottom:3px}
 .logo{height:30px;width:auto;display:block;filter:drop-shadow(0 0 6px rgba(0,0,0,.4))}
 .bolt{font-size:15px;color:var(--ice);opacity:.85}
@@ -154,18 +156,19 @@ html,body{height:100%;background:#08090b;overflow:hidden;font-family:'Inter',sys
 .hud-tag::before{content:"●";color:var(--green);margin-right:5px;font-size:7px;vertical-align:middle;animation:blink 1.6s infinite}
 @keyframes blink{50%{opacity:.25}}
 
-.name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:23px;letter-spacing:-.4px;margin-top:16px;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;letter-spacing:-.4px;margin-top:14px;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5)}
 .role{font-size:11.5px;color:var(--silver);letter-spacing:.04em;margin-top:3px}
 
-.divider{height:1px;margin:15px 0 13px;background:linear-gradient(90deg,transparent,rgba(200,202,210,.45),transparent)}
+.divider{height:1px;margin:13px 0 12px;background:linear-gradient(90deg,transparent,rgba(200,202,210,.45),transparent)}
 
-.contact{display:flex;flex-direction:column;gap:9px}
-.c{display:flex;align-items:center;gap:11px;font-size:11.5px;color:#dcdde0}
+.contact{display:flex;flex-direction:column;gap:8px}
+.c{display:flex;align-items:center;gap:11px;font-size:11.5px;color:#dcdde0;text-decoration:none;transition:opacity .2s}
+.c:active{opacity:.6}
 .c .ic{width:24px;height:24px;min-width:24px;border-radius:7px;display:grid;place-items:center;
   background:rgba(210,212,218,.08);border:1px solid rgba(210,212,218,.22);color:var(--ice)}
 .c .ic svg{width:12px;height:12px}
 
-.svc-label{font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.2em;color:var(--hud);opacity:.7;margin:16px 0 9px}
+.svc-label{font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:.2em;color:var(--hud);opacity:.7;margin:14px 0 9px}
 .svc{display:flex;flex-wrap:wrap;gap:6px}
 .chip{font-size:10px;letter-spacing:.01em;color:#dadbde;padding:5px 9px;border-radius:8px;
   background:rgba(200,202,210,.06);border:1px solid rgba(200,202,210,.16)}
@@ -191,7 +194,7 @@ html,body{height:100%;background:#08090b;overflow:hidden;font-family:'Inter',sys
 @keyframes rip{to{transform:translate(-50%,-50%) scale(14);opacity:0}}
 
 /* ── BACK / DASHBOARD — neon reserved for the data visuals here ── */
-.back{display:flex;flex-direction:column;padding:20px 18px 16px;gap:11px}
+.back{display:flex;flex-direction:column;padding:18px 16px 14px;gap:9px;min-height:100%}
 .lightning{position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(43,210,255,.4),transparent 60%);opacity:0;pointer-events:none;mix-blend-mode:screen}
 .lightning.flash{animation:strike .5s ease-out}
 @keyframes strike{0%{opacity:0}8%{opacity:.9}20%{opacity:.2}30%{opacity:.7}100%{opacity:0}}
@@ -204,11 +207,11 @@ html,body{height:100%;background:#08090b;overflow:hidden;font-family:'Inter',sys
 .live::before{content:"●";margin-right:5px;font-size:7px;animation:blink 1.2s infinite}
 
 .row{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center}
-.ring{position:relative;width:84px;height:84px;flex:none}
-.ring svg{transform:rotate(-90deg)}
+.ring{position:relative;width:76px;height:76px;flex:none}
+.ring svg{transform:rotate(-90deg);width:76px;height:76px}
 .ring .val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.ring .val b{font-family:'Space Grotesk',sans-serif;font-size:21px;color:#fff;line-height:1}
-.ring .val span{font-family:'Space Mono',monospace;font-size:7px;letter-spacing:.12em;color:var(--hud);margin-top:3px}
+.ring .val b{font-family:'Space Grotesk',sans-serif;font-size:19px;color:#fff;line-height:1}
+.ring .val span{font-family:'Space Mono',monospace;font-size:6.5px;letter-spacing:.1em;color:var(--hud);margin-top:3px}
 
 .tiles{display:flex;flex-direction:column;gap:8px}
 .tile{background:rgba(200,202,210,.05);border:1px solid var(--line);border-radius:11px;padding:9px 11px}
@@ -218,15 +221,15 @@ html,body{height:100%;background:#08090b;overflow:hidden;font-family:'Inter',sys
 .tile .v em{font-style:normal;font-size:9.5px;color:var(--green);font-family:'Space Mono',monospace}
 .tile .v em::before{content:"▲ "}
 
-.panel{background:rgba(14,15,18,.5);border:1px solid var(--line);border-radius:12px;padding:10px 11px 8px}
-.panel .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.panel{background:rgba(14,15,18,.5);border:1px solid var(--line);border-radius:12px;padding:9px 11px 7px}
+.panel .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
 .panel .ph .name2{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:.13em;color:var(--hud)}
 .panel .ph .pct{font-family:'Space Grotesk',sans-serif;font-size:12px;color:var(--green)}
 .panel .ph .pct::before{content:"▲ "}
-canvas.line{width:100%;height:66px;display:block}
+canvas.line{width:100%;height:56px;display:block}
 
 /* growth bars — neon kept here, this IS the graph */
-.bars{display:flex;align-items:flex-end;gap:7px;height:46px;padding-top:4px}
+.bars{display:flex;align-items:flex-end;gap:7px;height:38px;padding-top:4px}
 .bar{flex:1;border-radius:4px 4px 0 0;background:linear-gradient(to top,rgba(43,210,255,.25),var(--neon-blue));
   box-shadow:0 0 10px rgba(43,210,255,.4);transform-origin:bottom;height:30%;animation:grow 2.6s ease-in-out infinite}
 .bar:nth-child(1){animation-delay:0s}.bar:nth-child(2){animation-delay:.2s}.bar:nth-child(3){animation-delay:.4s}
@@ -244,8 +247,8 @@ canvas.line{width:100%;height:66px;display:block}
 .kpi .lbl{font-size:8.5px;color:var(--silver);letter-spacing:.02em;margin-top:3px;line-height:1.2}
 .kpi .spark2{position:absolute;right:8px;top:8px;color:var(--green);font-size:9px}
 
-.back-btn{margin-top:auto;text-align:center;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.16em;
-  color:var(--hud);cursor:pointer;padding:7px;border-radius:10px;border:1px solid var(--line);background:rgba(200,202,210,.04)}
+.back-btn{margin-top:auto;margin-bottom:2px;text-align:center;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.16em;
+  color:var(--hud);cursor:pointer;padding:9px;border-radius:10px;border:1px solid var(--line);background:rgba(200,202,210,.04);flex:none}
 .back-btn:active{transform:scale(.98)}
 
 /* footer hint */
@@ -289,9 +292,10 @@ canvas.line{width:100%;height:66px;display:block}
           <div class="divider"></div>
 
           <div class="contact">
-            <div class="c"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>+1 (647) 866-4489</div>
-            <div class="c"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>info@vectorstudio.tech</div>
-            <div class="c"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>www.vectorstudio.tech</div>
+            <a class="c" href="tel:+16478664489"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>+1 (647) 866-4489</a>
+            <a class="c" href="mailto:info@vectorstudio.tech"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>info@vectorstudio.tech</a>
+            <a class="c" href="https://www.vectorstudio.tech" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>www.vectorstudio.tech</a>
+            <a class="c" href="https://instagram.com/vectorstudio.tech" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>@vectorstudio.tech</a>
           </div>
 
           <div class="svc-label">SERVICES</div>
@@ -409,7 +413,7 @@ nfc.addEventListener('click',e=>{
   nfc.appendChild(r);setTimeout(()=>r.remove(),700);
   setTimeout(()=>setFlip(true),140);
 });
-front.addEventListener('click',e=>{ if(!e.target.closest('#nfc')) setFlip(true); });
+front.addEventListener('click',e=>{ if(!e.target.closest('#nfc') && !e.target.closest('.contact')) setFlip(true); });
 backBtn.addEventListener('click',e=>{e.stopPropagation();setFlip(false);});
 
 /* swipe + drag */
