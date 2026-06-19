@@ -160,27 +160,41 @@
   }
 
 
-  /* ── FLIP CARD (fade/scale swap — no 3D transforms, works in all browsers) ── */
+  /* ── FLOATING 3D FLIP CARD ── */
   .flip-zone {
     width: 100%;
     max-width: 360px;
-    position: relative;
+    perspective: 1600px;
   }
 
+  /* Outer layer: idle ambient float (never touches rotateY) */
+  .float-wrapper {
+    animation: cardFloat 5s ease-in-out infinite;
+    transform-style: preserve-3d;
+  }
+  @keyframes cardFloat {
+    0%, 100% { transform: translateY(0) rotateX(0deg) rotateZ(0deg); }
+    50%      { transform: translateY(-9px) rotateX(1.5deg) rotateZ(-0.6deg); }
+  }
+
+  /* Inner layer: the actual flip rotation */
   .flip-inner {
     position: relative;
     width: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.85s cubic-bezier(0.34, 1.3, 0.4, 1);
+    cursor: pointer;
   }
+  .flip-inner.flipped { transform: rotateY(180deg); }
+  .flip-inner:active { transition-duration: 0.5s; }
 
   .face {
-    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.1,0.4,1);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 
   .flip-inner .face-front {
     position: relative !important;
-    opacity: 1;
-    transform: scale(1);
-    z-index: 2;
   }
 
   .flip-inner .face-back {
@@ -188,31 +202,9 @@
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    bottom: auto !important;
     display: flex;
     flex-direction: column;
-    opacity: 0;
-    transform: scale(0.96);
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  .flip-inner.flipped .face-front {
-    opacity: 0;
-    transform: scale(0.96);
-    pointer-events: none;
-    z-index: 1;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-  }
-  .flip-inner.flipped .face-back {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
-    position: relative !important;
-    z-index: 2;
+    transform: rotateY(180deg);
   }
 
   .swipe-hint {
@@ -297,6 +289,8 @@
     align-items: center;
     justify-content: center;
     gap: 7px;
+    position: relative;
+    z-index: 5;
   }
 
   #cardCanvas { display: none; }
@@ -328,6 +322,7 @@
   <div class="particle p3"></div>
 
   <div class="flip-zone">
+  <div class="float-wrapper">
   <div class="flip-inner" id="flipInner">
 
   <div class="card face face-front">
@@ -432,6 +427,7 @@
     </button>
   </div>
 
+  </div>
   </div>
   </div>
 </div>
@@ -640,7 +636,7 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
 
 
 <script>
-// ── FLIP CARD: swipe + tap interaction ──
+// ── FLOATING 3D FLIP CARD: tap or swipe, unlimited times, either direction ──
 const flipInner = document.getElementById('flipInner');
 const flipBackBtn = document.getElementById('flipBackBtn');
 const swipeHint = document.getElementById('swipeHint');
@@ -664,59 +660,40 @@ function animateChart() {
   });
 }
 
-function flipCard(toBack) {
-  if (toBack) {
-    flipInner.classList.add('flipped');
-    if (swipeHint) swipeHint.style.display = 'none';
-    setTimeout(animateChart, 350);
-  } else {
-    flipInner.classList.remove('flipped');
-  }
+function toggleFlip() {
+  const flipping = flipInner.classList.toggle('flipped');
+  if (swipeHint) swipeHint.style.display = flipping ? 'none' : 'flex';
+  if (flipping) setTimeout(animateChart, 450);
 }
 
-// Tap the swipe hint to flip
-if (swipeHint) {
-  swipeHint.style.cursor = 'pointer';
-  swipeHint.addEventListener('click', () => flipCard(true));
-}
+// Tap ANYWHERE on the card to flip — except interactive elements (buttons, links)
+flipInner.addEventListener('click', (e) => {
+  const interactive = e.target.closest('button, a');
+  if (interactive) return; // let buttons/links do their own thing
+  toggleFlip();
+});
 
-// Flip back button
-if (flipBackBtn) {
-  flipBackBtn.addEventListener('click', () => flipCard(false));
-}
-
-// Swipe gesture detection
+// Swipe gesture (left or right, from either face) also flips
 let touchStartX = 0;
 let touchStartY = 0;
+let touchMoved = false;
 
 flipInner.addEventListener('touchstart', (e) => {
   touchStartX = e.touches[0].clientX;
   touchStartY = e.touches[0].clientY;
+  touchMoved = false;
 }, { passive: true });
+
+flipInner.addEventListener('touchmove', () => { touchMoved = true; }, { passive: true });
 
 flipInner.addEventListener('touchend', (e) => {
+  if (!touchMoved) return; // let click handler manage simple taps
   const dx = e.changedTouches[0].clientX - touchStartX;
   const dy = e.changedTouches[0].clientY - touchStartY;
-  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
-    const isFlipped = flipInner.classList.contains('flipped');
-    if (dx < 0 && !isFlipped) flipCard(true);
-    else if (dx > 0 && isFlipped) flipCard(false);
+  if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+    toggleFlip();
   }
 }, { passive: true });
-
-// Mouse drag support for desktop testing
-let mouseDownX = null;
-flipInner.addEventListener('mousedown', (e) => { mouseDownX = e.clientX; });
-flipInner.addEventListener('mouseup', (e) => {
-  if (mouseDownX === null) return;
-  const dx = e.clientX - mouseDownX;
-  const isFlipped = flipInner.classList.contains('flipped');
-  if (Math.abs(dx) > 60) {
-    if (dx < 0 && !isFlipped) flipCard(true);
-    else if (dx > 0 && isFlipped) flipCard(false);
-  }
-  mouseDownX = null;
-});
 </script>
 
 </body>
