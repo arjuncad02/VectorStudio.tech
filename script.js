@@ -6,6 +6,26 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ── CURSOR ── */
+   /* ── THEME TOGGLE ── 
+   Paste this block inside the DOMContentLoaded function in script.js
+   right after the CURSOR section
+*/
+
+  /* ── THEME TOGGLE ── */
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    const saved = localStorage.getItem('vs-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+    themeToggle.textContent = saved === 'light' ? '☀️' : '☾';
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('vs-theme', next);
+      themeToggle.textContent = next === 'light' ? '☀️' : '☾';
+    });
+  }
   const cur = document.getElementById('cursor');
   const ring = document.getElementById('cursor-ring');
   if (cur && ring) {
