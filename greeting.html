@@ -160,32 +160,52 @@
   }
 
 
-  /* ── FLIP CARD ── */
+  /* ── FLIP CARD (fade/scale swap — no 3D transforms, works in all browsers) ── */
   .flip-zone {
     width: 100%;
     max-width: 360px;
-    perspective: 1800px;
+    position: relative;
   }
 
   .flip-inner {
     position: relative;
     width: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.7s cubic-bezier(0.34, 1.1, 0.4, 1);
   }
-  .flip-inner.flipped { transform: rotateY(180deg); }
 
   .face {
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.1,0.4,1);
+  }
+
+  .face-front {
+    position: relative;
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+    z-index: 2;
   }
 
   .face-back {
     position: absolute;
     inset: 0;
-    transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
+    opacity: 0;
+    transform: scale(0.96);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .flip-inner.flipped .face-front {
+    opacity: 0;
+    transform: scale(0.96);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .flip-inner.flipped .face-back {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+    position: relative;
+    z-index: 2;
   }
 
   .swipe-hint {
