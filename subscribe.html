@@ -96,7 +96,7 @@ input:focus{outline:none;border-color:rgba(59,130,246,.55)}
         <label class="plan active" data-plan="starter">
           <input type="radio" name="plan" value="starter" checked />
           <div class="plan-tier">Starter</div>
-          <div class="plan-price">$299<sub>/mo</sub></div>
+          <div class="plan-price">$199<sub>/mo</sub></div>
         </label>
         <label class="plan" data-plan="growth">
           <input type="radio" name="plan" value="growth" />
@@ -135,9 +135,9 @@ input:focus{outline:none;border-color:rgba(59,130,246,.55)}
   <!-- RIGHT: order summary -->
   <div class="panel summary">
     <h1 style="font-size:1.2rem;">Order summary</h1>
-    <div class="sum-row"><span id="sumPlanName">Starter plan (monthly)</span><span id="sumSubtotal">$299.00</span></div>
+    <div class="sum-row"><span id="sumPlanName">Starter plan (monthly)</span><span id="sumSubtotal">$199.00</span></div>
     <div class="sum-row"><span>Tax</span><span style="font-size:.8rem;">Calculated at checkout</span></div>
-    <div class="sum-row total"><span>Monthly subtotal</span><span class="amt" id="sumTotal">$299.00</span></div>
+    <div class="sum-row total"><span>Monthly subtotal</span><span class="amt" id="sumTotal">$199.00</span></div>
     <p style="font-size:.74rem;color:var(--text-muted);margin-top:.6rem;line-height:1.55;">Applicable tax is added automatically at checkout based on your location. International cards are accepted — your bank converts the amount to your local currency.</p>
     <p class="note">
       Your subscription renews automatically on the same day each month. You'll receive an email receipt for every payment and a confirmation when your subscription starts.
@@ -161,7 +161,7 @@ const CONFIG = {
   },
 
   PLANS: {
-    starter: { name: "Starter plan (monthly)", price: 299 },
+    starter: { name: "Starter plan (monthly)", price: 199 },
     growth:  { name: "Growth plan (monthly)",  price: 799 }
   }
 };
